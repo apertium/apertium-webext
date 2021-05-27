@@ -1,17 +1,25 @@
 {
-  "name": "Apertium WebExt",
+  "name": "Apertium",
   "manifest_version": 2,
   "version" : "1.0",
   "description": "Cross-browser WebExtension Frontend for the Apertium APy service",
   "options_page": "options.html",
   "browser_action": {
-    "default_title": "Apertium WebExt",
+    "default_title": "Apertium",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
       "64": "icons/icon64.png",
-      "128": "icons/icon128.png"
+      "128": "icons/icon128.png",
+      "512": "icons/icon512.png"
     }
+  },
+  "icons":{
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "64": "icons/icon64.png",
+    "128": "icons/icon128.png",
+    "512": "icons/icon512.png"
   }
 }

@@ -2,9 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Apertium</title>
+    <link rel="stylesheet" href="popup.css">
+
+    <!-- TODO: replace with local copies-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
+
 <body>
-<h1>Hello!</h1>
+<div class="banner-apertium">
+    <div class="logo">
+        <img src="../icons/apertium-logo.svg" alt="Apertium Logo">
+    </div>
+    <div class="settings">
+        <i class="fa fa-cog" style="color:#fff; font-size: x-large"></i>
+    </div>
+</div>
+<div class="container">
+    <div class="language-select-container">
+        <div class="language-select source-language">
+            <div class="d-inline-flex align-items-start justify-content-between">
+                <div role="group" class="d-flex flex-wrap pl-0 btn-group">
+                    <button type="button" class="btn btn-dark btn-sm">Arpitan</button>
+                    <button value="detect" type="button" class="btn btn-dark btn-sm"> ^</button>
+                </div>
+            </div>
+        </div>
+        <div class="language-select exchange-button">
+            <button type="button" class="btn bg-transparent">
+                <img src="../icons/switch.svg" alt="exchange icon">
+            </button>
+        </div>
+        <div class="language-select target-language">
+            <div class="d-inline-flex align-items-start justify-content-between">
+                <div role="group" class="d-flex flex-wrap pl-0 btn-group">
+                    <button type="button" class="btn active btn-dark btn-sm">Target Lang</button>
+                    <button type="button" class="btn btn-dark btn-sm">^</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-boxes">
+        <div class="text-box input-text-box"></div>
+        <div class="text-box output-text-box"></div>
+    </div>
+    <div class="button-row">
+        <div class="translate-button"></div>
+        <div class="translate-webpage-button"></div>
+        <div class="enable-hover-checkbox"></div>
+    </div>
+</div>
+<div class="footer">
+
+</div>
 </body>
 </html>
