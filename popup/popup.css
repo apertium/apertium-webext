@@ -1,5 +1,5 @@
 body {
-    width: 35em;
+    width: 30em;
     height: 20em;
     margin: 0;
 }
@@ -59,7 +59,7 @@ body {
     justify-content: flex-end;
 }
 
-.btn:focus,.btn:active {
+.btn:focus,.btn:active, textarea:focus, textarea:active {
     outline: none !important;
     box-shadow: none !important;
 }
@@ -67,4 +67,12 @@ body {
 .exchange-button img{
     width: 1.5em;
     height: auto;
+}
+
+.text-box{
+    margin: 1em 0;
+}
+
+.output-text-box textarea{
+    background-color: white !important;
 }

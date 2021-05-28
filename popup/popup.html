@@ -37,15 +37,19 @@
         <div class="language-select target-language">
             <div class="d-inline-flex align-items-start justify-content-between">
                 <div role="group" class="d-flex flex-wrap pl-0 btn-group">
-                    <button type="button" class="btn active btn-dark btn-sm">Target Lang</button>
+                    <button type="button" class="btn btn-dark btn-sm">Target Lang</button>
                     <button type="button" class="btn btn-dark btn-sm"><i class="fa fa-caret-down"></i></button>
                 </div>
             </div>
         </div>
     </div>
     <div class="text-boxes">
-        <div class="text-box input-text-box"></div>
-        <div class="text-box output-text-box"></div>
+        <div class="text-box input-text-box">
+            <textarea class="form-control" rows="1" placeholder="Input"></textarea>
+        </div>
+        <div class="text-box output-text-box">
+            <textarea readonly class="form-control" rows="1" placeholder="Output"></textarea>
+        </div>
     </div>
     <div class="button-row">
         <div class="translate-button"></div>
