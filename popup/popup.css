@@ -1,6 +1,6 @@
 body {
     width: 30em;
-    height: 20em;
+    height: 18em;
     margin: 0;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 .container{
-    padding: 0.5em;
+    padding: 0.5em 0.5em 0 0.5em;
 }
 
 .language-select-container{
@@ -52,6 +52,10 @@ body {
     min-width: -webkit-min-content;
 }
 
+.source-language button {
+    font-size: smaller;
+}
+
 .target-language{
     flex: 1;
     display: flex;
@@ -59,9 +63,17 @@ body {
     justify-content: flex-end;
 }
 
+.target-language button {
+    font-size: smaller;
+}
+
 .btn:focus,.btn:active, textarea:focus, textarea:active {
     outline: none !important;
     box-shadow: none !important;
+}
+
+.exchange-button button {
+    padding: 0;
 }
 
 .exchange-button img{
@@ -69,10 +81,48 @@ body {
     height: auto;
 }
 
-.text-box{
+.text-box {
     margin: 1em 0;
 }
 
-.output-text-box textarea{
+.output-text-box textarea {
     background-color: white !important;
+}
+
+.button-row {
+    display: flex;
+    align-items: flex-start;
+    justify-items: flex-start;
+    flex-direction: row;
+}
+
+.translate-button button, .translate-webpage-button button{
+    font-size: smaller;
+    margin-right: 1em;
+}
+
+.enable-hover-checkbox label {
+    font-size: small;
+}
+
+.enable-hover-checkbox input {
+    margin-top: 0.45em;
+}
+
+.enable-hover-checkbox {
+    margin-left: 2em;
+}
+
+.footer {
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    margin: 0 0.5em 0.5em 0;
+}
+
+.footer span {
+    color: #5c5c5c;
+    font-size: 0.5em;
 }

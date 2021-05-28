@@ -13,7 +13,9 @@
 <body>
 <div class="banner-apertium">
     <div class="logo">
-        <img src="../icons/apertium-logo.svg" alt="Apertium Logo">
+        <a href="https://www.apertium.org/" target="_blank">
+            <img src="../icons/apertium-logo.svg" alt="Apertium Logo">
+        </a>
     </div>
     <div class="settings">
         <i class="fa fa-cog" style="color:#fff; font-size: x-large"></i>
@@ -24,7 +26,7 @@
         <div class="language-select source-language">
             <div class="d-inline-flex align-items-start justify-content-between">
                 <div role="group" class="d-flex flex-wrap pl-0 btn-group">
-                    <button type="button" class="btn btn-dark btn-sm">Arpitan</button>
+                    <button type="button" class="btn btn-dark btn-sm">Source Lang</button>
                     <button value="detect" type="button" class="btn btn-dark btn-sm"><i class="fa fa-caret-down"></i></button>
                 </div>
             </div>
@@ -52,13 +54,24 @@
         </div>
     </div>
     <div class="button-row">
-        <div class="translate-button"></div>
-        <div class="translate-webpage-button"></div>
-        <div class="enable-hover-checkbox"></div>
+        <div role="group" class="d-flex flex-wrap pl-0 btn-group">
+            <div class="translate-button">
+                <button type="button" class="btn btn-dark btn-sm">Translate</button>
+            </div>
+            <div class="translate-webpage-button">
+                <button type="button" class="btn btn-dark btn-sm">Translate Webpage</button>
+            </div>
+            <div class="enable-hover-checkbox form-check">
+                <input class="form-check-input" type="checkbox" value="" id="enable-hover">
+                <label class="form-check-label" for="enable-hover">
+                    Enable Hover-In Translation
+                </label>
+            </div>
+        </div>
     </div>
 </div>
 <div class="footer">
-
+    <span>Apertium WebExt 1.0</span>
 </div>
 </body>
 </html>
