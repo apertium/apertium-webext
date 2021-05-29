@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apertium</title>
+    <link rel="stylesheet" href="popup.css">
+
+    <!-- TODO: replace with local copies-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="banner-apertium">
+    <div class="logo">
+        <a href="https://www.apertium.org/" target="_blank">
+            <img src="../icons/apertium-logo.svg" alt="Apertium Logo">
+        </a>
+    </div>
+    <div class="settings">
+        <a href="popup.html">
+            <img class="language-icon" src="../icons/language.svg" alt="Switch to Main"/>
+        </a>
+    </div>
+</div>
+<div class="main-container">
+    <div class="default-language-select">
+        <span>Default Language to Translate to</span>
+        <div role="group" class="d-flex flex-wrap pl-0 btn-group">
+            <button type="button" class="btn btn-dark btn-sm">Target Lang</button>
+            <button value="detect" type="button" class="btn btn-dark btn-sm"><i class="fa fa-caret-down"></i></button>
+        </div>
+    </div>
+    <div class="website-table">
+        <div class="table-wrapper-scroll-y website-table-scrollbar">
+            <table class="table table-condensed table-striped mb-0">
+                <thead class="table-fix-head">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Hover-Enabled Websites</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>https://wikipedia.com</td>
+                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>https://stackoverflow.com/</td>
+                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>https://www.w3schools.com/</td>
+                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>https://www.youtube.com/</td>
+                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>https://github.com/</td>
+                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <span>Apertium WebExt 1.0</span>
+</div>
+</body>
