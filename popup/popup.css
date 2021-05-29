@@ -4,6 +4,10 @@ body {
     margin: 0;
 }
 
+.btn {
+    background-color: #333333 !important;
+}
+
 tr, td, th {
     padding: 0.5em !important;
     border: 0;
@@ -43,15 +47,10 @@ tr, td, th {
 
 .settings-icon {
     padding-top: 0.5em !important;
-    color: #fff;
-
-    font-size: x-large !important;
 }
 
 .language-icon {
     padding-top: 0.6em !important;
-    -webkit-filter: invert(1);
-    filter: invert(1);
 }
 
 .main-container {
@@ -184,6 +183,6 @@ tr, td, th {
     position: sticky;
     top: 0;
     z-index: 1;
-    background-color: white;
+    background-color: white !important;
     border-style: hidden;
 }
