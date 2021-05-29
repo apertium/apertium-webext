@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "version" : "1.0",
   "description": "Cross-browser WebExtension Frontend for the Apertium APy service",
-  "options_page": "options.html",
+  "options_page": "popup/options.html",
   "browser_action": {
     "default_title": "Apertium",
     "default_popup": "popup/popup.html",
@@ -21,5 +21,14 @@
     "64": "icons/icon64.png",
     "128": "icons/icon128.png",
     "512": "icons/icon512.png"
-  }
+  },
+  "background": {
+    "scripts": [
+      "background/jquery.min.js",
+      "background/background.js"
+    ]
+  },
+  "permissions": [
+    "tabs"
+  ]
 }
