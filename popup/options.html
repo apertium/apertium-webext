@@ -6,12 +6,11 @@
     <link rel="stylesheet" href="popup.css">
     <link href="bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
 <div class="banner-apertium">
     <div class="logo">
         <a href="https://www.apertium.org/" target="_blank">
-            <img src="../icons/apertium-logo.svg" alt="Apertium Logo">
+            <img src="../assets/apertium-logo.svg" alt="Apertium Logo">
         </a>
     </div>
     <div class="settings">
@@ -28,7 +27,7 @@
         <span>Default Language to Translate to</span>
         <div role="group" class="d-flex flex-wrap pl-0 btn-group">
             <button type="button" class="btn btn-dark btn-sm">Target Lang</button>
-            <button value="detect" type="button" class="btn btn-dark btn-sm">
+            <button id="default-target-language-button" value="detect" type="button" class="btn btn-dark btn-sm more-languages">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
                      class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                     <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -50,27 +49,27 @@
                 <tr>
                     <th scope="row">1</th>
                     <td>https://wikipedia.com</td>
-                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                    <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td>https://stackoverflow.com/</td>
-                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                    <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td>https://www.w3schools.com/</td>
-                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                    <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
                 </tr>
                 <tr>
                     <th scope="row">4</th>
                     <td>https://www.youtube.com/</td>
-                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                    <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
                 </tr>
                 <tr>
                     <th scope="row">5</th>
                     <td>https://github.com/</td>
-                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                    <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
                 </tr>
                 </tbody>
             </table>
@@ -80,4 +79,6 @@
 <div class="footer">
     <span>Apertium WebExt 1.0</span>
 </div>
+<script src="../background/jquery.min.js"></script>
+<script src="options.js"></script>
 </body>

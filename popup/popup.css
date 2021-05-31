@@ -79,6 +79,10 @@ tr, td, th {
     justify-content: flex-end;
 }
 
+.error {
+    border: 1px solid red !important;
+}
+
 .target-language button {
     font-size: smaller;
 }
@@ -101,7 +105,7 @@ tr, td, th {
     margin: 1em 0;
 }
 
-.output-text-box textarea {
+.output-text-box {
     background-color: white !important;
 }
 
@@ -118,6 +122,7 @@ tr, td, th {
 }
 
 .enable-hover-checkbox label {
+    padding-top: 0.4em;
     font-size: small;
 }
 
@@ -127,6 +132,16 @@ tr, td, th {
 
 .enable-hover-checkbox {
     margin-left: 2em;
+}
+
+.enable-hover-checkbox input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.enable-hover-checkbox input:checked {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
 }
 
 .footer {
@@ -185,4 +200,8 @@ tr, td, th {
     z-index: 1;
     background-color: white !important;
     border-style: hidden;
+}
+
+.trash-icon {
+    cursor: pointer;
 }
