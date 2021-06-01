@@ -163,7 +163,7 @@ tr, td, th {
     justify-content: space-between;
     align-content: center;
 
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .default-language-select .btn {
@@ -178,7 +178,8 @@ tr, td, th {
 
 .website-table-scrollbar {
     position: relative;
-    height: 10.5em;
+    margin: 0 0.3em 0 0.3em;
+    height: 9.5em;
     overflow: auto;
 
     -ms-overflow-style: none;
@@ -204,4 +205,20 @@ tr, td, th {
 
 .trash-icon {
     cursor: pointer;
+}
+
+.additional-settings-div {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-end;
+
+    margin-top: 0.5em;
+    padding-right: 1em;
+}
+
+.additional-settings-div a {
+    font-size: smaller;
+    color: #333333;
+    text-decoration: none;
 }

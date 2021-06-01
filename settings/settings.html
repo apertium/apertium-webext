@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apertium</title>
+  <script defer src="settings.js"></script>
+  <link href="settings.css" rel="stylesheet">
+  <link href="../popup/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="banner-apertium">
+  <div class="logo">
+    <a href="https://www.apertium.org/" target="_blank">
+      <img src="../assets/apertium-logo.svg" alt="Apertium Logo">
+    </a>
+  </div>
+</div>
+<div class="main-container">
+  <div class="default-language-select">
+    <span>Default Language to Translate to</span>
+    <div role="group" class="d-flex flex-wrap pl-0 btn-group">
+      <button type="button" class="btn btn-dark btn-sm no-focus">Target Lang</button>
+      <button id="default-target-language-button" value="detect" type="button" class="btn no-focus btn-dark btn-sm more-languages">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+             class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="default-language-select">
+    <span>Select Apertium Source</span>
+    <select class="source-select form-select no-focus" aria-label="Default select example">
+      <option selected>Apertium Release</option>
+      <option value="1">Apertium Beta</option>
+      <option value="2">Local/Custom Source</option>
+    </select>
+  </div>
+  <div class="default-language-select">
+    <span>Last Updated: Yesterday at 13.00 UTC</span>
+    <div role="group" class="d-flex flex-wrap pl-0 btn-group">
+      <button type="button" class="btn btn-dark btn-sm no-focus">Update Now</button>
+    </div>
+  </div>
+  <div class="website-table">
+    <div class="table-wrapper-scroll-y website-table-scrollbar">
+      <table class="table table-condensed table-striped mb-0">
+        <thead class="table-fix-head">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Hover-Enabled Websites</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>https://wikipedia.com</td>
+          <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>https://stackoverflow.com/</td>
+          <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>https://www.w3schools.com/</td>
+          <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>https://www.youtube.com/</td>
+          <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>https://github.com/</td>
+          <td class="delete-website"><img class="trash-icon" src="../assets/trash.svg" alt="trash icon"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

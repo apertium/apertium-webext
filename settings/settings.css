@@ -1,0 +1,85 @@
+.btn {
+    background-color: #333333 !important;
+}
+
+tr, td, th {
+    border: 0;
+}
+
+.no-focus:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.banner-apertium {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: auto;
+    height: 8em;
+    padding: 0.5em 1em 1em 1em;
+
+    background-color: #333333;
+}
+
+.logo {
+    order: 0;
+}
+
+.logo img {
+    width: auto;
+    height: 100%;
+}
+
+.main-container {
+    padding: 1em;
+    height: calc(100vh - 8em);
+}
+
+.default-language-select {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.default-language-select span {
+    padding-left: 0.35em;
+    padding-top: 0.3em;
+}
+
+.source-select {
+    width: 12em !important;
+}
+
+.website-table-scrollbar {
+    position: relative;
+    overflow: auto;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.website-table-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.table-fix-head , .table-fix-head th, .table-fix-head tr {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white !important;
+    border-style: hidden;
+}
+
+.trash-icon {
+    cursor: pointer;
+}
