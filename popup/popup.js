@@ -3,8 +3,6 @@ const TRANSLATE_URL = "https://beta.apertium.org/apy/translate";
 
 let prevText = "";
 
-init();
-
 //TODO: Displays source languages available
 $("#source-language-dropdown").click(function () {
 

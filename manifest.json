@@ -8,19 +8,19 @@
     "default_title": "Apertium",
     "default_popup": "popup/popup.html",
     "default_icon": {
-      "16": "icons/icon16.png",
-      "32": "icons/icon32.png",
-      "64": "icons/icon64.png",
-      "128": "icons/icon128.png",
-      "512": "icons/icon512.png"
+      "16": "assets/icons/icon16.png",
+      "32": "assets/icons/icon32.png",
+      "64": "assets/icons/icon64.png",
+      "128": "assets/icons/icon128.png",
+      "512": "assets/icons/icon512.png"
     }
   },
   "icons":{
-    "16": "icons/icon16.png",
-    "32": "icons/icon32.png",
-    "64": "icons/icon64.png",
-    "128": "icons/icon128.png",
-    "512": "icons/icon512.png"
+    "16": "assets/icons/icon16.png",
+    "32": "assets/icons/icon32.png",
+    "64": "assets/icons/icon64.png",
+    "128": "assets/icons/icon128.png",
+    "512": "assets/icons/icon512.png"
   },
   "background": {
     "scripts": [
