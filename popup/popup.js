@@ -1,3 +1,5 @@
+globalSettings = getGlobalSettings();
+
 const INPUT_SIZE_LIMIT = 1000;
 const TRANSLATE_URL = "https://beta.apertium.org/apy/translate";
 
@@ -40,6 +42,19 @@ $("#translate-webpage-button").click(function () {
 $("#enable-hover-checkbox").click(function () {
 
 });
+
+
+function getGlobalSettings() {
+    let settings = localStorage.getItem("apertium.settings")
+
+    if (settings === null) {
+        return {
+            ApertiumSource: "https://beta.apertium.org/apy/"
+        }
+    } else {
+        return settings;
+    }
+}
 
 // only return text if it is (a) non-empty; (b) less than the limit; (c) different from the previous input.
 function getInputText() {

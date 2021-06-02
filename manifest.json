@@ -26,9 +26,11 @@
     "scripts": [
       "background/jquery.min.js",
       "background/background.js"
-    ]
+    ],
+    "persistent": false
   },
   "permissions": [
-    "tabs"
+    "tabs",
+    "contextMenus"
   ]
 }

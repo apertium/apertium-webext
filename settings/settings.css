@@ -37,7 +37,7 @@ tr, td, th {
     height: calc(100vh - 8em);
 }
 
-.default-language-select {
+.single-line-setting {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -47,9 +47,17 @@ tr, td, th {
     margin-bottom: 1.5em;
 }
 
-.default-language-select span {
+.single-line-setting span {
     padding-left: 0.35em;
     padding-top: 0.3em;
+}
+
+.single-line-setting .btn-group {
+    width: 10em;
+}
+
+#update-button {
+    width: 10em;
 }
 
 .source-select {

@@ -166,11 +166,11 @@ tr, td, th {
     margin-bottom: 0.5em;
 }
 
-.default-language-select .btn {
+.single-line-setting .btn {
     font-size: smaller;
 }
 
-.default-language-select span {
+.single-line-setting span {
     padding-left: 0.35em;
     padding-top: 0.3em;
     font-size: small;
