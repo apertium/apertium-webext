@@ -1,6 +1,5 @@
 window.browser = (function () {
-    return window.browser ||
-        window.chrome;
+    return window.browser || window.chrome;
 })();
 
 
@@ -11,4 +10,5 @@ browser.runtime.onInstalled.addListener(function () {
         "documentUrlPatterns": ["<all_urls>"],
         "contexts": ["page"]
     });
-})
+});
+

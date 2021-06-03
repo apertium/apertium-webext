@@ -91,3 +91,32 @@ tr, td, th {
 .trash-icon {
     cursor: pointer;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.language-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 30em;
+    box-shadow: 0 0.2em 0.4em 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.enabled-language {
+    color: black;
+    padding: 0.3em 0.4em;
+    text-decoration: none;
+    display: block;
+}
+
+.disabled-language {
+    color: gray;
+    padding: 0.3em 0.4em;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
