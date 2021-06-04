@@ -56,6 +56,10 @@ tr, td, th {
     width: 10em;
 }
 
+#default-target-language-button {
+    width: 2em;
+}
+
 #update-button {
     width: 10em;
 }
@@ -98,18 +102,22 @@ tr, td, th {
 }
 
 .language-dropdown {
+    float: right;
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 30em;
+    max-height: 30em;
+    width: 10em;
     box-shadow: 0 0.2em 0.4em 0 rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 2;
+    overflow-y: auto;
 }
 
 .enabled-language {
     color: black;
     padding: 0.3em 0.4em;
-    text-decoration: none;
+
+    cursor: pointer;
     display: block;
 }
 

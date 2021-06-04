@@ -21,7 +21,7 @@
     <span>Default Language to Translate to</span>
     <div class="dropdown">
       <div role="group" class="d-flex flex-wrap pl-0 btn-group">
-        <button type="button" class="btn btn-dark btn-sm no-focus">Target Lang</button>
+        <button id="target-language" type="button" class="btn btn-dark btn-sm no-focus">Target Lang</button>
         <button id="default-target-language-button" value="detect" type="button"
                 class="btn no-focus btn-dark btn-sm more-languages">
           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
@@ -31,12 +31,11 @@
         </button>
       </div>
       <div id="target-language-dropdown" class="language-dropdown">
-        <a>eng</a>
       </div>
     </div>
   </div>
   <div class="single-line-setting">
-    <span>Last Updated: Yesterday at 13.00 UTC</span>
+    <span id="last-updated">Last Updated: </span>
     <div role="group" class="d-flex flex-wrap pl-0 btn-group">
       <button type="button" id="update-button" class="btn btn-dark btn-sm no-focus">Update Now</button>
     </div>
@@ -44,9 +43,9 @@
   <div class="single-line-setting">
     <span>Select Apertium Source</span>
     <select id="source-select" class="source-select form-select no-focus" aria-label="Default select example">
-      <option selected>Apertium Release</option>
-      <option>Apertium Beta</option>
-      <option>Local/Custom Source</option>
+      <option value="release">Apertium Release</option>
+      <option value="beta">Apertium Beta</option>
+      <option value="custom">Local/Custom Source</option>
     </select>
   </div>
   <div class="website-table">
