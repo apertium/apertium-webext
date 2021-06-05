@@ -43,43 +43,24 @@ $("#source-select").change(async function () {
 
 // TODO: hover-enabled table
 
+
 function init() {
     globalSettings = getGlobalSettings();
+    getLangPairs();
+
     createDropdown($("#target-language-dropdown"));
     setDefaultLanguage(globalSettings.DefaultLanguage);
     setApertiumSource(globalSettings.ApertiumSource);
     setLastUpdated(globalSettings.lastUpdated)
 }
 
-function setDefaultLanguage(defaultLanguage) {
-    $("#target-language").text(defaultLanguage);
-}
 
-function setApertiumSource(apertiumSource) {
-    let sourceSelect = $("#source-select");
-    switch (apertiumSource) {
-        case "https://apertium.org/apy/":
-            sourceSelect.val("release").change();
-            break;
-        case "https://beta.apertium.org/apy/":
-            sourceSelect.val("beta").change();
-            break;
-        case "Local/Custom Source":
-            sourceSelect.val("custom").change();
-            break;
-    }
-}
-
-function setLastUpdated(lastUpdated) {
-    let updatedText = "Last Updated: " + lastUpdated
-    $("#last-updated").text(updatedText);
-}
 
 function getGlobalSettings() {
     let settings = JSON.parse(localStorage.getItem("apertium.settings"));
     if (settings === null) {
         return {
-            ApertiumSource: "https://beta.apertium.org/apy/",
+            ApertiumSource: "https://apertium.org/apy/",
             DefaultLanguage: "eng",
             lastUpdated: "on Installation"
         }
@@ -91,6 +72,15 @@ function getGlobalSettings() {
 function saveGlobalSettings(settings) {
     let settingsJSON = JSON.stringify(settings);
     localStorage.setItem("apertium.settings", settingsJSON);
+}
+
+function getLangPairs() {
+    let langPairs = localStorage.getItem("apertium.langPairs");
+
+    if(langPairs === null) {
+        let languageList = fetchLanguageList(getLangPairsEndpoint());
+        createLanguagePairs(languageList);
+    }
 }
 
 async function updateLanguagePairs() {
@@ -116,11 +106,15 @@ async function fetchLanguageList(listPairURL) {
 function createLanguagePairs(languageList){
     let current = new Date();
 
-    return {
+    let langPairs = {
         last_updated: current.toLocaleString(),
         source: globalSettings.ApertiumSource,
         langPairs: languageList
     };
+
+    let langPairsJSON = JSON.stringify(langPairs);
+    localStorage.setItem("apertium.langPairs", langPairsJSON);
+    return langPairs;
 }
 
 function getTargetLanguages() {
@@ -130,6 +124,32 @@ function getTargetLanguages() {
         list.push(languageList[i].targetLanguage);
     }
     return [...new Set(list)];
+}
+
+
+
+function setDefaultLanguage(defaultLanguage) {
+    $("#target-language").text(defaultLanguage);
+}
+
+function setApertiumSource(apertiumSource) {
+    let sourceSelect = $("#source-select");
+    switch (apertiumSource) {
+        case "https://apertium.org/apy/":
+            sourceSelect.val("release").change();
+            break;
+        case "https://beta.apertium.org/apy/":
+            sourceSelect.val("beta").change();
+            break;
+        case "Local/Custom Source":
+            sourceSelect.val("custom").change();
+            break;
+    }
+}
+
+function setLastUpdated(lastUpdated) {
+    let updatedText = "Last Updated: " + lastUpdated
+    $("#last-updated").text(updatedText);
 }
 
 function createDropdown(parent) {

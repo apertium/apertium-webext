@@ -1,4 +1,4 @@
-globalSettings = getGlobalSettings();
+let globalSettings = getGlobalSettings();
 
 const INPUT_SIZE_LIMIT = 1000;
 const TRANSLATE_URL = "https://beta.apertium.org/apy/translate";
@@ -7,7 +7,8 @@ let prevText = "";
 
 //TODO: Displays source languages available
 $("#source-language-dropdown").click(function () {
-
+    let sourceLanguageList = getSourceList();
+    createDropdown($("#source-dropdown-div"), sourceLanguageList);
 });
 
 //TODO: Displays target languages available for current source
@@ -44,17 +45,43 @@ $("#enable-hover-checkbox").click(function () {
 });
 
 
-function getGlobalSettings() {
-    let settings = localStorage.getItem("apertium.settings")
 
+function init() {
+
+}
+
+function getGlobalSettings() {
+    let settings = JSON.parse(localStorage.getItem("apertium.settings"));
     if (settings === null) {
         return {
-            ApertiumSource: "https://beta.apertium.org/apy/"
+            ApertiumSource: "https://apertium.org/apy/",
+            DefaultLanguage: "eng",
+            lastUpdated: "on Installation"
         }
     } else {
         return settings;
     }
 }
+
+function getSourceList() {
+    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
+    let list = [];
+    for (let i = 0; i < languageList.length; i++) {
+        list.push(languageList[i].sourceLanguage);
+    }
+    return [...new Set(list)];
+}
+
+function getTargetList() {
+    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
+    let list = [];
+    for (let i = 0; i < languageList.length; i++) {
+        list.push(languageList[i].targetLanguage);
+    }
+    return [...new Set(list)];
+}
+
+
 
 // only return text if it is (a) non-empty; (b) less than the limit; (c) different from the previous input.
 function getInputText() {
@@ -91,4 +118,12 @@ async function getTranslation(inputText, sourceLanguage, targetLanguage) {
         .then(data => data.responseData.translatedText);
 
     return outputText;
+}
+
+function createDropdown(parent, list) {
+    parent.empty();
+    list.forEach((languageCode) => {
+        console.log(languageCode)
+        parent.append("<option class='enabled-language' value='" + languageCode + "'>" + languageCode + "</option>");
+    })
 }

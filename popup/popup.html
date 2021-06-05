@@ -29,14 +29,17 @@
     <div class="language-select-container">
         <div class="language-select source-language">
             <div class="d-inline-flex align-items-start justify-content-between">
-                <div role="group" class="d-flex flex-wrap pl-0 btn-group">
-                    <button type="button" class="btn btn-dark btn-sm">Source Lang</button>
-                    <button id="source-language-dropdown" value="detect" type="button" class="btn btn-dark btn-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
-                             class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                        </svg>
-                    </button>
+                <div class="dropdown">
+                    <div role="group" class="d-flex flex-wrap pl-0 btn-group">
+                        <button type="button" class="btn btn-dark btn-sm">Source Lang</button>
+                        <button id="source-language-dropdown" value="detect" type="button" class="btn btn-dark btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                                 class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="source-dropdown-div" class="language-dropdown"></div>
                 </div>
             </div>
         </div>
@@ -47,14 +50,17 @@
         </div>
         <div class="language-select target-language">
             <div class="d-inline-flex align-items-start justify-content-between">
-                <div role="group" class="d-flex flex-wrap pl-0 btn-group">
-                    <button type="button" class="btn btn-dark btn-sm">Target Lang</button>
-                    <button id="target-language-dropdown" type="button" class="btn btn-dark btn-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
-                             class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                        </svg>
-                    </button>
+                <div class="dropdown">
+                    <div role="group" class="d-flex flex-wrap pl-0 btn-group">
+                        <button type="button" class="btn btn-dark btn-sm">Target Lang</button>
+                        <button id="target-language-dropdown" type="button" class="btn btn-dark btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                                 class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="target-dropdown-div" class="language-dropdown"></div>
                 </div>
             </div>
         </div>
