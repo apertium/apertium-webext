@@ -28,82 +28,17 @@ function init() {
     globalSettings = getGlobalSettings();
     getLangPairs();
     createDropdown($("#target-language-dropdown"));
-    setDefaultLanguage(globalSettings.DefaultLanguage);
+    setDefaultLanguage(globalSettings.defaultLanguage);
 }
-
-
-
-function getGlobalSettings() {
-    let settings = JSON.parse(localStorage.getItem("apertium.settings"));
-    if (settings === null) {
-        return {
-            ApertiumSource: "https://apertium.org/apy/",
-            DefaultLanguage: "eng",
-            lastUpdated: "on Installation"
-        }
-    } else {
-        return settings;
-    }
-}
-
-function saveGlobalSettings(settings) {
-    let settingsJSON = JSON.stringify(settings);
-    localStorage.setItem("apertium.settings", settingsJSON);
-}
-
-function getLangPairs() {
-    let langPairs = localStorage.getItem("apertium.langPairs");
-
-    if(langPairs === null) {
-        let languageList = fetchLanguageList(getLangPairsEndpoint());
-        createLanguagePairs(languageList);
-    }
-}
-
-function getLangPairsEndpoint() {
-    return globalSettings.ApertiumSource + "listPairs";
-}
-
-async function fetchLanguageList(listPairURL) {
-    return fetch(listPairURL)
-        .then(response => response.json())
-        .then(data => data.responseData);
-}
-
-function createLanguagePairs(languageList){
-    let current = new Date();
-
-    let langPairs = {
-        last_updated: current.toLocaleString(),
-        source: globalSettings.ApertiumSource,
-        langPairs: languageList
-    };
-
-    let langPairsJSON = JSON.stringify(langPairs);
-    localStorage.setItem("apertium.langPairs", langPairsJSON);
-    return langPairs;
-}
-
-function getTargetLanguages() {
-    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
-    let list = [];
-    for (let i = 0; i < languageList.length; i++) {
-        list.push(languageList[i].targetLanguage);
-    }
-    return [...new Set(list)];
-}
-
 
 
 function setDefaultLanguage(defaultLanguage) {
-
-
     $("#target-language").text(defaultLanguage);
 }
 
 function createDropdown(parent) {
     parent.empty();
-    let list = getTargetLanguages();
+    let list = getTargetList();
     list.forEach((languageCode) => {
         parent.append("<option class='enabled-language' value='" + languageCode + "'>" + languageCode + "</option>");
     })

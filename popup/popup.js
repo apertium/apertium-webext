@@ -1,8 +1,4 @@
 let globalSettings = getGlobalSettings();
-
-const INPUT_SIZE_LIMIT = 1000;
-const TRANSLATE_URL = "https://beta.apertium.org/apy/translate";
-
 let prevText = "";
 
 //TODO: Displays source languages available
@@ -50,39 +46,6 @@ function init() {
 
 }
 
-function getGlobalSettings() {
-    let settings = JSON.parse(localStorage.getItem("apertium.settings"));
-    if (settings === null) {
-        return {
-            ApertiumSource: "https://apertium.org/apy/",
-            DefaultLanguage: "eng",
-            lastUpdated: "on Installation"
-        }
-    } else {
-        return settings;
-    }
-}
-
-function getSourceList() {
-    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
-    let list = [];
-    for (let i = 0; i < languageList.length; i++) {
-        list.push(languageList[i].sourceLanguage);
-    }
-    return [...new Set(list)];
-}
-
-function getTargetList() {
-    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
-    let list = [];
-    for (let i = 0; i < languageList.length; i++) {
-        list.push(languageList[i].targetLanguage);
-    }
-    return [...new Set(list)];
-}
-
-
-
 // only return text if it is (a) non-empty; (b) less than the limit; (c) different from the previous input.
 function getInputText() {
     let inputField = $(".input-text-box");
@@ -91,7 +54,7 @@ function getInputText() {
     if (!text) {
         inputField.addClass("error");
         return null;
-    } else if (text.length > INPUT_SIZE_LIMIT) {
+    } else if (text.length > globalSettings.inputSizeLimit) {
         inputField.addClass("error");
         return null;
     } else if (text === prevText) {
@@ -109,7 +72,7 @@ async function getTranslation(inputText, sourceLanguage, targetLanguage) {
     let langPair = "";
     langPair = langPair.concat(sourceLanguage, "|", targetLanguage);
 
-    let url = new URL(TRANSLATE_URL);
+    let url = new URL(getTranslationEndpoint());
     let params = {langpair: langPair, q: inputText, format: "html"};
     url.search = new URLSearchParams(params).toString();
 
@@ -123,7 +86,6 @@ async function getTranslation(inputText, sourceLanguage, targetLanguage) {
 function createDropdown(parent, list) {
     parent.empty();
     list.forEach((languageCode) => {
-        console.log(languageCode)
         parent.append("<option class='enabled-language' value='" + languageCode + "'>" + languageCode + "</option>");
     })
 }
