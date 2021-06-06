@@ -34,10 +34,12 @@ function getLanguageCodeMap(){
         "mlt" : "Maltese",
         "mlt_translit" : "Maltese(translit.)",
         "cat" : "Catalan",
+        "cym" : "Welsh",
         "spa" : "Spanish",
         "ben" : "Bangali",
         "eng" : "English",
         "rus" : "Russian",
+        "eus" : "Basque",
         "tat" : "Tatar",
         "btc" : "Bati",
         "asm" : "Assamese",
@@ -225,6 +227,28 @@ function getTargetList() {
     let list = [];
     for (let i = 0; i < languageList.length; i++) {
         list.push(languageList[i].targetLanguage);
+    }
+    return [...new Set(list)];
+}
+
+function getSourceWithTarget(target) {
+    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
+    let list = [];
+    for (let i = 0; i < languageList.length; i++) {
+        if(languageList[i].targetLanguage === target) {
+            list.push(languageList[i].sourceLanguage);
+        }
+    }
+    return [...new Set(list)];
+}
+
+function getTargetwithSource(source) {
+    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
+    let list = [];
+    for (let i = 0; i < languageList.length; i++) {
+        if(languageList[i].sourceLanguage === source) {
+            list.push(languageList[i].targetLanguage);
+        }
     }
     return [...new Set(list)];
 }

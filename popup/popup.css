@@ -233,13 +233,13 @@ tr, td, th {
     position: absolute;
     background-color: #f1f1f1;
     max-height: 9em;
-    width: 10em;
+    width: 10.5em;
     box-shadow: 0 0.2em 0.4em 0 rgba(0,0,0,0.2);
     z-index: 2;
     overflow-y: auto;
 }
 
-#target-language-dropdown {
+.target-language-dropdown {
     right: 0;
 }
 
