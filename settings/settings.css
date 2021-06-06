@@ -114,6 +114,7 @@ tr, td, th {
 }
 
 .enabled-language {
+    font-size: smaller;
     color: black;
     padding: 0.3em 0.4em;
 
@@ -122,6 +123,7 @@ tr, td, th {
 }
 
 .disabled-language {
+    font-size: smaller;
     color: gray;
     padding: 0.3em 0.4em;
     text-decoration: none;

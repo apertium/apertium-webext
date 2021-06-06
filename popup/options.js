@@ -14,8 +14,8 @@ $("#default-target-language-button").click(function () {
 $(".enabled-language").click(function () {
     let selectedLanguage = getSelectedLanguage($(this));
 
-    globalSettings.DefaultLanguage = selectedLanguage;
-    $("#target-language").text(selectedLanguage);
+    globalSettings.defaultLanguage = selectedLanguage;
+    setDefaultLanguage(selectedLanguage);
     saveGlobalSettings(globalSettings);
 });
 
@@ -33,15 +33,27 @@ function init() {
 
 
 function setDefaultLanguage(defaultLanguage) {
-    $("#target-language").text(defaultLanguage);
+    let codeMap = getLanguageCodeMap();
+    if (codeMap[defaultLanguage] === undefined) {
+        $("#target-language").text(defaultLanguage);
+    } else {
+        $("#target-language").text(codeMap[defaultLanguage]);
+    }
 }
 
 function createDropdown(parent) {
     parent.empty();
+    let codeMap = getLanguageCodeMap();
     let list = getTargetList();
     list.forEach((languageCode) => {
-        parent.append("<option class='enabled-language' value='" + languageCode + "'>" + languageCode + "</option>");
-    })
+        let languageName;
+        if (codeMap[languageCode] === undefined) {
+            languageName = languageCode;
+        } else {
+            languageName = codeMap[languageCode];
+        }
+        parent.append("<option class='enabled-language' value='" + languageCode + "'>" + languageName + "</option>");
+    });
 }
 
 function getSelectedLanguage(selector) {
