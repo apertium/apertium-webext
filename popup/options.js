@@ -2,7 +2,7 @@ let globalSettings;
 init()
 
 // Sets default language
-$("#default-target-language-button").click(function () {
+$("#default-target-language-button").on('click', function () {
     let dropdown = $("#target-language-dropdown")[0];
     if (dropdown.style.display === "") {
         dropdown.style.display = "block";
@@ -11,7 +11,7 @@ $("#default-target-language-button").click(function () {
     }
 });
 
-$(".enabled-language").click(function () {
+$(".enabled-language").on('click', function () {
     let selectedLanguage = getSelectedLanguage($(this));
 
     globalSettings.defaultLanguage = selectedLanguage;
@@ -20,7 +20,7 @@ $(".enabled-language").click(function () {
 });
 
 // TODO: delete a website from the hover list
-$(".delete-website").click(function () {
+$(".delete-website").on('click', function () {
 
 });
 

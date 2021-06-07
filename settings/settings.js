@@ -1,7 +1,7 @@
 let globalSettings;
 init();
 
-$("#default-target-language-button").click(function () {
+$("#default-target-language-button").on('click', function () {
     let dropdown = $("#target-language-dropdown")[0];
     if (dropdown.style.display === "") {
         dropdown.style.display = "block";
@@ -10,7 +10,7 @@ $("#default-target-language-button").click(function () {
     }
 });
 
-$(".enabled-language").click(function () {
+$(".enabled-language").on('click', function () {
     let selectedLanguage = getSelectedLanguage($(this));
 
     globalSettings.defaultLanguage = selectedLanguage;
@@ -18,12 +18,12 @@ $(".enabled-language").click(function () {
     saveGlobalSettings(globalSettings);
 });
 
-$("#update-button").click(async function () {
+$("#update-button").on('click', async function () {
     await updateLanguagePairs();
     saveGlobalSettings(globalSettings);
 });
 
-$("#source-select").change(async function () {
+$("#source-select").on('click', async function () {
     let selectedSource = $("#source-select option:selected").text();
     switch (selectedSource) {
         case "Apertium Release":

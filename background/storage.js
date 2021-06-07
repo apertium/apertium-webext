@@ -114,7 +114,7 @@ function getLanguageCodeMap(){
         "frp" : "Arpitan",
         "gla" : "Gaelic",
         "hin" : "Hindi",
-        "ara" : "Aragonese",
+        "ara" : "Arabic",
         "guj" : "Gujurati",
         "kok" : "Konkani",
         "mar" : "Marathi",
@@ -171,7 +171,8 @@ function getLanguageCodeMap(){
         "tki" : "Iraqi Türkmen",
         "trw" : "Torwali",
         "zab_Simp" : "Dizhsa(Simp.)",
-        "zab_Phon" : "Dizhsa(Phon.)"
+        "zab_Phon" : "Dizhsa(Phon.)",
+        "select" : "Select"
     }
 }
 

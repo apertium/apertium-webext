@@ -1,10 +1,9 @@
 let globalSettings;
-let prevText = "";
 
 init();
 
-//TODO: Displays source languages available
-$("#source-language-button").click(function () {
+// Displays source languages available
+$("#source-language-button").on('click', function () {
     let dropdown = $("#source-dropdown-div")[0];
     if (dropdown.style.display === "") {
         dropdown.style.display = "block";
@@ -13,15 +12,19 @@ $("#source-language-button").click(function () {
     }
 });
 
-$(".source-language-option").click(function () {
+$("#source-dropdown-div").on('click', '.source-language-option', function () {
     let selectedLanguage = getSelectedLanguage($(this));
 
     setSourceLanguage(selectedLanguage);
-    createTargetDropdown($("#target-language-button"), selectedLanguage)
+    if (selectedLanguage === 'select') {
+        createTargetDropdown($("#target-dropdown-div"));
+    } else {
+        createTargetDropdown($("#target-dropdown-div"), selectedLanguage);
+    }
 });
 
-//TODO: Displays target languages available for current source
-$("#target-language-button").click(function () {
+// Displays target languages available for current source
+$("#target-language-button").on('click', function () {
     let dropdown = $("#target-dropdown-div")[0];
     if (dropdown.style.display === "") {
         dropdown.style.display = "block";
@@ -30,25 +33,32 @@ $("#target-language-button").click(function () {
     }
 });
 
-$(".target-language-option").click(function () {
+$("#target-dropdown-div").on('click', '.target-language-option', function () {
     let selectedLanguage = getSelectedLanguage($(this));
 
     setTargetLanguage(selectedLanguage);
-    createSourceDropdown($("#source-language-button"), selectedLanguage);
+
+    if (selectedLanguage === 'select') {
+        createSourceDropdown($("#source-dropdown-div"));
+    } else {
+        createSourceDropdown($("#source-dropdown-div"), selectedLanguage);
+    }
 });
 
 //TODO: Exchange source and target languages if possible. Set up cases if not
-$("#exchange-source-target").click( function () {
+$("#exchange-source-target").on('click', function () {
 
 });
 
-$("#translate-button").click(function () {
+$("#translate-button").on('click', function () {
     let translateInput = getInputText();
     if (!translateInput) return;
 
-    //TODO: get src and targ languages from user
-    let sourceLanguage = "eng";
-    let targetLanguage = "spa";
+    let sourceLanguage = getSourceLanguage();
+    if(!sourceLanguage) return;
+
+    let targetLanguage = getTargetLanguage();
+    if(!targetLanguage) return;
 
     getTranslation(translateInput, sourceLanguage, targetLanguage).then(translateOutput => {
         $(".output-text-box").val(translateOutput);
@@ -56,12 +66,12 @@ $("#translate-button").click(function () {
 });
 
 // TODO: Translate the entire current webpage
-$("#translate-webpage-button").click(function () {
+$("#translate-webpage-button").on('click', function () {
 
 });
 
 // TODO: Enable hover if inactive before, disable if active
-$("#enable-hover-checkbox").click(function () {
+$("#enable-hover-checkbox").on('click', function () {
 
 });
 
@@ -72,7 +82,6 @@ function init() {
     setTargetLanguage(globalSettings.defaultLanguage);
     createSourceDropdown($("#source-dropdown-div"), globalSettings.defaultLanguage);
     createTargetDropdown($("#target-dropdown-div"));
-
 }
 
 // only return text if it is (a) non-empty; (b) less than the limit; (c) different from the previous input.
@@ -86,19 +95,16 @@ function getInputText() {
     } else if (text.length > globalSettings.inputSizeLimit) {
         inputField.addClass("error");
         return null;
-    } else if (text === prevText) {
-        return null;
     }
 
     inputField.removeClass("error");
-    prevText = text;
 
     return text;
 }
 
 function getSelectedLanguage(selector) {
     selector.addClass("selected-language");
-    let text = $(".selected-language").text();
+    let text = $(".selected-language").val();
     selector.removeClass("selected-language");
 
     return text;
@@ -120,8 +126,31 @@ async function getTranslation(inputText, sourceLanguage, targetLanguage) {
     return outputText;
 }
 
+function getTargetLanguage(){
+    let languageCode = $("#target-language").val();
+
+    if(languageCode === 'select' || languageCode === undefined){
+        $("#target-language").addClass('error');
+        return null;
+    } else {
+        return languageCode
+    }
+}
+
+function getSourceLanguage(){
+    let languageCode = $("#source-language").val();
+
+    if(languageCode === 'select' || languageCode === undefined){
+        $("#source-language").addClass('error');
+        return null;
+    } else {
+        return languageCode
+    }
+}
+
 function setTargetLanguage(targetLanguage) {
     let codeMap = getLanguageCodeMap();
+    $("#target-language").val(targetLanguage);
     if (codeMap[targetLanguage] === undefined) {
         $("#target-language").text(targetLanguage);
     } else {
@@ -131,6 +160,7 @@ function setTargetLanguage(targetLanguage) {
 
 function setSourceLanguage(sourceLanguage) {
     let codeMap = getLanguageCodeMap();
+    $("#source-language").val(sourceLanguage);
     if (codeMap[sourceLanguage] === undefined) {
         $("#source-language").text(sourceLanguage);
     } else {
@@ -148,6 +178,8 @@ function createTargetDropdown(parent, source = "") {
     } else {
         list = getTargetList();
     }
+
+    parent.append("<option class='enabled-language target-language-option' value='select'>Reset Language</option>");
 
     list.forEach((languageCode) => {
         let languageName;
@@ -170,6 +202,8 @@ function createSourceDropdown(parent, target = "") {
     } else {
         list = getSourceList();
     }
+
+    parent.append("<option class='enabled-language source-language-option' value='select'>Reset Language</option>");
 
     list.forEach((languageCode) => {
         let languageName;
