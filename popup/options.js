@@ -58,7 +58,7 @@ function createDropdown(parent) {
 
 function getSelectedLanguage(selector) {
     selector.addClass("selected-language");
-    let text = $(".selected-language").text();
+    let text = $(".selected-language").val();
     selector.removeClass("selected-language");
 
     return text;

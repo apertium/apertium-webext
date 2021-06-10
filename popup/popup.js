@@ -126,6 +126,10 @@ async function getTranslation(inputText, sourceLanguage, targetLanguage) {
     return outputText;
 }
 
+async function detectInputLanguage() {
+    // TODO
+}
+
 function getTargetLanguage(){
     let languageCode = $("#target-language").val();
 
@@ -137,12 +141,14 @@ function getTargetLanguage(){
     }
 }
 
-function getSourceLanguage(){
+async function getSourceLanguage(){
     let languageCode = $("#source-language").val();
 
-    if(languageCode === 'select' || languageCode === undefined){
+    if (languageCode === undefined) {
         $("#source-language").addClass('error');
         return null;
+    } else if (languageCode === 'detect') {
+        await detectInputLanguage();
     } else {
         return languageCode
     }
@@ -203,7 +209,7 @@ function createSourceDropdown(parent, target = "") {
         list = getSourceList();
     }
 
-    parent.append("<option class='enabled-language source-language-option' value='select'>Reset Language</option>");
+    parent.append("<option class='enabled-language source-language-option' value='detect'>Detect Language</option>");
 
     list.forEach((languageCode) => {
         let languageName;

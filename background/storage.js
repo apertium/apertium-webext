@@ -28,6 +28,7 @@ function getLangPairs() {
 
 function getLanguageCodeMap(){
     return {
+        "detect" : "Detect Language",
         "deu" : "Deutsch",
         "nld" : "Dutch",
         "heb" : "Hebrew",
