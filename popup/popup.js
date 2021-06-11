@@ -46,19 +46,47 @@ $("#target-dropdown-div").on('click', '.target-language-option', function () {
 });
 
 //TODO: Exchange source and target languages if possible. Set up cases if not
-$("#exchange-source-target").on('click', function () {
+$("#exchange-source-target").on('click', async function () {
+    let sourceLanguage = await getSourceLanguage();
+    let targetLanguage = await getTargetLanguage();
 
+    if (sourceLanguage === 'detect') {
+        setSourceLanguage(targetLanguage);
+        setTargetLanguage('select');
+
+        createSourceDropdown($("#source-dropdown-div"), targetLanguage);
+        createTargetDropdown($("#target-dropdown-div"));
+    } else if (targetLanguage === 'select') {
+        setSourceLanguage('detect');
+        setTargetLanguage(sourceLanguage);
+
+        createSourceDropdown($("#source-dropdown-div"));
+        createTargetDropdown($("#target-dropdown-div"), sourceLanguage);
+    } else {
+        let newTargetList = getTargetwithSource(targetLanguage);
+
+        createSourceDropdown($("#source-dropdown-div"), sourceLanguage);
+        setSourceLanguage(targetLanguage);
+
+        if (newTargetList !== [] && newTargetList.includes(sourceLanguage)) {
+            setTargetLanguage(sourceLanguage);
+            createTargetDropdown($("#target-dropdown-div"), targetLanguage);
+        } else {
+            setTargetLanguage('select');
+            createTargetDropdown($("#target-dropdown-div"));
+        }
+    }
 });
 
-$("#translate-button").on('click', function () {
+$("#translate-button").on('click', async function () {
     let translateInput = getInputText();
     if (!translateInput) return;
 
-    let sourceLanguage = getSourceLanguage();
-    if(!sourceLanguage) return;
+    let sourceLanguage = await getSourceLanguage();
+    if (!sourceLanguage) return;
 
-    let targetLanguage = getTargetLanguage();
-    if(!targetLanguage) return;
+    let targetLanguage = await getTargetLanguage();
+    if (!targetLanguage || targetLanguage === 'select') return;
 
     getTranslation(translateInput, sourceLanguage, targetLanguage).then(translateOutput => {
         $(".output-text-box").val(translateOutput);
@@ -133,7 +161,7 @@ async function detectInputLanguage() {
 function getTargetLanguage(){
     let languageCode = $("#target-language").val();
 
-    if(languageCode === 'select' || languageCode === undefined){
+    if (languageCode === undefined) {
         $("#target-language").addClass('error');
         return null;
     } else {
