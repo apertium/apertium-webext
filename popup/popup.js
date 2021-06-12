@@ -50,18 +50,20 @@ $("#exchange-source-target").on('click', async function () {
     let sourceLanguage = await getSourceLanguage();
     let targetLanguage = await getTargetLanguage();
 
+    console.log(sourceLanguage+targetLanguage);
+
     if (sourceLanguage === 'detect') {
         setSourceLanguage(targetLanguage);
         setTargetLanguage('select');
 
-        createSourceDropdown($("#source-dropdown-div"), targetLanguage);
-        createTargetDropdown($("#target-dropdown-div"));
+        createSourceDropdown($("#source-dropdown-div"));
+        createTargetDropdown($("#target-dropdown-div"), targetLanguage);
     } else if (targetLanguage === 'select') {
         setSourceLanguage('detect');
         setTargetLanguage(sourceLanguage);
 
-        createSourceDropdown($("#source-dropdown-div"));
-        createTargetDropdown($("#target-dropdown-div"), sourceLanguage);
+        createSourceDropdown($("#source-dropdown-div"), sourceLanguage);
+        createTargetDropdown($("#target-dropdown-div"));
     } else {
         let newTargetList = getTargetwithSource(targetLanguage);
 
@@ -177,6 +179,7 @@ async function getSourceLanguage(){
         return null;
     } else if (languageCode === 'detect') {
         await detectInputLanguage();
+        return 'detect';
     } else {
         return languageCode
     }
