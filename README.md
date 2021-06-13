@@ -9,7 +9,6 @@
   - [Chrome/Chromium](#chrome-and-other-chromium-based-browsers)
   - [FireFox](#firefox)
   - [Edge](#microsoft-edge)
-- [Development](#development)
 - [Navigation](#navigation)
 - [Contribution](#contribution)
 
@@ -21,9 +20,6 @@
 ### FireFox
 
 ### Microsoft Edge
-
-
-## Development
 
 
 ## Navigation
