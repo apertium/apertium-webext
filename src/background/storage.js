@@ -1,12 +1,14 @@
 function getGlobalSettings() {
     let settings = JSON.parse(localStorage.getItem("apertium.settings"));
     if (settings === null) {
-        return {
+        settings = {
             apertiumSource: "https://apertium.org/apy/",
             defaultLanguage: "eng",
             lastUpdated: "on Installation",
             inputSizeLimit: 1000
         };
+        saveGlobalSettings(settings);
+        return settings;
     } else {
         return settings;
     }
@@ -22,8 +24,11 @@ function getLangPairs() {
 
     if(langPairs === null) {
         let languageList = fetchLanguageList(getLangPairsEndpoint());
+        console.log(languageList)
         createLanguagePairs(languageList);
     }
+
+    return JSON.parse(langPairs);
 }
 
 function getLanguageCodeMap(){
@@ -216,7 +221,7 @@ function createLanguagePairs(languageList){
 }
 
 function getSourceList() {
-    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
+    let languageList = getLangPairs().langPairs;
     let list = [];
     for (let i = 0; i < languageList.length; i++) {
         list.push(languageList[i].sourceLanguage);
@@ -225,7 +230,7 @@ function getSourceList() {
 }
 
 function getTargetList() {
-    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
+    let languageList = getLangPairs().langPairs;
     let list = [];
     for (let i = 0; i < languageList.length; i++) {
         list.push(languageList[i].targetLanguage);
@@ -234,7 +239,7 @@ function getTargetList() {
 }
 
 function getSourceWithTarget(target) {
-    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
+    let languageList = getLangPairs().langPairs;
     let list = [];
     for (let i = 0; i < languageList.length; i++) {
         if(languageList[i].targetLanguage === target) {
@@ -245,7 +250,7 @@ function getSourceWithTarget(target) {
 }
 
 function getTargetwithSource(source) {
-    let languageList = JSON.parse(localStorage.getItem("apertium.langPairs")).langPairs;
+    let languageList = getLangPairs().langPairs;
     let list = [];
     for (let i = 0; i < languageList.length; i++) {
         if(languageList[i].sourceLanguage === source) {

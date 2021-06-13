@@ -108,6 +108,7 @@ $("#enable-hover-checkbox").on('click', function () {
 
 function init() {
     globalSettings = getGlobalSettings();
+    console.log(globalSettings)
     setTargetLanguage(globalSettings.defaultLanguage);
     createSourceDropdown($("#source-dropdown-div"), globalSettings.defaultLanguage);
     createTargetDropdown($("#target-dropdown-div"));
