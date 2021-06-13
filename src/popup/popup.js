@@ -45,7 +45,7 @@ $("#target-dropdown-div").on('click', '.target-language-option', function () {
     }
 });
 
-//TODO: Exchange source and target languages if possible. Set up cases if not
+//Exchange source and target languages if possible
 $("#exchange-source-target").on('click', async function () {
     let sourceLanguage = await getSourceLanguage();
     let targetLanguage = await getTargetLanguage();
@@ -97,7 +97,6 @@ $("#translate-button").on('click', async function () {
 
 // TODO: Translate the entire current webpage
 $("#translate-webpage-button").on('click', function () {
-
 });
 
 // TODO: Enable hover if inactive before, disable if active
