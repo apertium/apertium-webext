@@ -1,3 +1,4 @@
+//GlobalSettings
 function getGlobalSettings() {
     let settings = JSON.parse(localStorage.getItem("apertium.settings"));
     if (settings === null) {
@@ -19,6 +20,8 @@ function saveGlobalSettings(settings) {
     localStorage.setItem("apertium.settings", settingsJSON);
 }
 
+
+//Language Pairs
 function getLangPairs() {
     let langPairs = localStorage.getItem("apertium.langPairs");
 
@@ -29,6 +32,36 @@ function getLangPairs() {
     }
 
     return JSON.parse(langPairs);
+}
+
+async function fetchLanguageList(listPairURL) {
+    return fetch(listPairURL)
+        .then(response => response.json())
+        .then(data => data.responseData);
+}
+
+function createLanguagePairs(languageList){
+    let current = new Date();
+
+    let langPairs = {
+        last_updated: current.toLocaleString(),
+        source: globalSettings.apertiumSource,
+        langPairs: languageList
+    };
+
+    let langPairsJSON = JSON.stringify(langPairs);
+    localStorage.setItem("apertium.langPairs", langPairsJSON);
+    return langPairs;
+}
+
+async function updateLanguagePairs() {
+    let time = new Date().toLocaleString();
+    let languageList = await fetchLanguageList(getLangPairsEndpoint());
+    let languagePairsJSON = JSON.stringify(createLanguagePairs(languageList));
+
+    localStorage.setItem("apertium.langPairs", languagePairsJSON);
+    globalSettings.lastUpdated = time;
+    setLastUpdated(time);
 }
 
 function getLanguageCodeMap(){
@@ -182,16 +215,8 @@ function getLanguageCodeMap(){
     }
 }
 
-async function updateLanguagePairs() {
-    let time = new Date().toLocaleString();
-    let languageList = await fetchLanguageList(getLangPairsEndpoint());
-    let languagePairsJSON = JSON.stringify(createLanguagePairs(languageList));
 
-    localStorage.setItem("apertium.langPairs", languagePairsJSON);
-    globalSettings.lastUpdated = time;
-    setLastUpdated(time);
-}
-
+//API EndPoints
 function getLangPairsEndpoint() {
     return globalSettings.apertiumSource + "listPairs";
 }
@@ -200,26 +225,26 @@ function getTranslationEndpoint() {
     return globalSettings.apertiumSource + "translate";
 }
 
-async function fetchLanguageList(listPairURL) {
-    return fetch(listPairURL)
-        .then(response => response.json())
-        .then(data => data.responseData);
+
+//TODO: Enabled Website List
+function getEnabledWebsiteList(){
+    return ["https://wikipedia.com", "https://www.youtube.com", "https://stackoverflow.com"];
 }
 
-function createLanguagePairs(languageList){
-    let current = new Date();
+function saveEnabledWebsiteList() {
 
-    let langPairs = {
-        last_updated: current.toLocaleString(),
-        source: globalSettings.apertiumSource,
-        langPairs: languageList
-    };
-
-    let langPairsJSON = JSON.stringify(langPairs);
-    localStorage.setItem("apertium.langPairs", langPairsJSON);
-    return langPairs;
 }
 
+function removeFromEnabledWebsiteList(url){
+
+}
+
+function addToEnabledWebsiteList(url) {
+
+}
+
+
+//Source/Target Language Lists
 function getSourceList() {
     let languageList = getLangPairs().langPairs;
     let list = [];

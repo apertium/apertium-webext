@@ -27,17 +27,7 @@
 .
 ├── README.md
 ├── src
-│   ├── assets
-│   │   ├── apertium-logo.svg
-│   │   ├── icons
-│   │   │   ├── icon128.png
-│   │   │   ├── icon16.png
-│   │   │   ├── icon32.png
-│   │   │   ├── icon512.png
-│   │   │   └── icon64.png
-│   │   ├── language.svg
-│   │   ├── switch.svg
-│   │   └── trash.svg
+│   ├── assets/...
 │   ├── background
 │   │   ├── background.js
 │   │   ├── jquery.min.js
@@ -53,8 +43,6 @@
 │   └── settings
 │       └── settings.html/css/js
 └── tests
-
-
 ```
 #### Background
 background.js contains all background scripts such as the right-click contextmenu option, the script to redirect the user to the settings page on being installed (TODO) and so on. storage.js is meant for all functions that deal with the two localStorage Objects, apertium.settings and apertium.langPairs.

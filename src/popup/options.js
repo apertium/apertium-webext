@@ -27,10 +27,22 @@ $(".delete-website").on('click', function () {
 function init() {
     globalSettings = getGlobalSettings();
     getLangPairs();
+    updateEnabledTable($("#enabled-website-tbody"));
     createDropdown($("#target-language-dropdown"));
     setDefaultLanguage(globalSettings.defaultLanguage);
 }
 
+
+function updateEnabledTable(parent) {
+    let list = getEnabledWebsiteList();
+
+    parent.empty();
+    let rowIter = 1;
+    list.forEach((websiteURL) => {
+        parent.append("<tr><th scope='row'>" + rowIter + "</th><td>" + websiteURL + "</td><td class='delete-website'><img class='trash-icon' src='../assets/trash.svg' alt='trash icon'></td></tr>");
+        rowIter++;
+    });
+}
 
 function setDefaultLanguage(defaultLanguage) {
     let codeMap = getLanguageCodeMap();
@@ -42,9 +54,9 @@ function setDefaultLanguage(defaultLanguage) {
 }
 
 function createDropdown(parent) {
-    parent.empty();
     let codeMap = getLanguageCodeMap();
     let list = getTargetList();
+    parent.empty();
     list.forEach((languageCode) => {
         let languageName;
         if (codeMap[languageCode] === undefined) {

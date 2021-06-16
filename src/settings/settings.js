@@ -49,6 +49,7 @@ function init() {
     getLangPairs();
 
     createDropdown($("#target-language-dropdown"));
+    updateEnabledTable($("#enabled-website-tbody"));
     setDefaultLanguage(globalSettings.defaultLanguage);
     setApertiumSource(globalSettings.apertiumSource);
     setLastUpdated(globalSettings.lastUpdated);
@@ -105,4 +106,15 @@ function getSelectedLanguage(selector) {
     selector.removeClass("selected-language");
 
     return text;
+}
+
+function updateEnabledTable(parent) {
+    let list = getEnabledWebsiteList();
+
+    parent.empty();
+    let rowIter = 1;
+    list.forEach((websiteURL) => {
+        parent.append("<tr><th scope='row'>" + rowIter + "</th><td>" + websiteURL + "</td><td class='delete-website'><img class='trash-icon' src='../assets/trash.svg' alt='trash icon'></td></tr>");
+        rowIter++;
+    });
 }
