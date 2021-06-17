@@ -17,11 +17,12 @@
 
 ### Chrome and other Chromium-based Browsers
 1. Navigate to `chrome://extensions` in your browser. You can also access this page by clicking on the Chrome menu on the top right side of the Omnibox (three vertical dots), hovering over More Tools and selecting Extensions.
-   
-![chrome-extension-select](https://github.com/apertium/apertium-webext/blob/master/misc/chrome-extension-select.png)
 2. Check the box next to Developer Mode.
+ 
+![chrome-extension-select](https://github.com/apertium/apertium-webext/blob/main/misc/chrome-extension-select.png)
 
-![location-select](https://github.com/apertium/apertium-webext/blob/master/misc/location-in-folder.png)
+![location-select](https://github.com/apertium/apertium-webext/blob/main/misc/location-in-folder.png)
+
 3. Click Load Unpacked Extension and select the src directory within apertium-webext.
 
 And you're done! you can use the extension to translate within the pop-up or hover on words as you like.
