@@ -5,6 +5,7 @@ function getGlobalSettings() {
         settings = {
             apertiumSource: "https://apertium.org/apy/",
             defaultLanguage: "eng",
+            enabledWebsites: ["en.wikipedia.org", "stackoverflow.com"],
             lastUpdated: "on Installation",
             inputSizeLimit: 1000
         };
@@ -228,11 +229,18 @@ function getTranslationEndpoint() {
 
 //TODO: Enabled Website List
 function getEnabledWebsiteList(){
-    return ["https://wikipedia.com", "https://www.youtube.com", "https://stackoverflow.com"];
+    let settings = getGlobalSettings();
+    return settings.enabledWebsites;
 }
 
-function saveEnabledWebsiteList() {
+function saveEnabledWebsiteList(newList) {
+    if(newList === null) {
+        return;
+    }
 
+    let settings = getGlobalSettings();
+    settings.enabledWebsites = newList;
+    saveGlobalSettings();
 }
 
 function removeFromEnabledWebsiteList(url){

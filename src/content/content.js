@@ -1,3 +1,6 @@
-console.log(document);
+enabledList = getEnabledWebsiteList();
 
-addHoverTag();
+if(enabledList.includes(window.location.hostname)) {
+    addHoverTag();
+}
+

@@ -25,6 +25,7 @@
   "background": {
     "scripts": [
       "background/jquery.min.js",
+      "background/storage.js",
       "background/background.js"
     ],
     "persistent": false
@@ -38,6 +39,7 @@
       "js": [
         "background/jquery.min.js",
         "content/hover.js",
+        "background/storage.js",
         "content/content.js"
       ]
     }
