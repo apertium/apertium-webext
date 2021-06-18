@@ -233,22 +233,37 @@ function getEnabledWebsiteList(){
     return settings.enabledWebsites;
 }
 
-function saveEnabledWebsiteList(newList) {
+function saveEnabledWebsiteList(settings, newList) {
     if(newList === null) {
         return;
     }
 
-    let settings = getGlobalSettings();
     settings.enabledWebsites = newList;
-    saveGlobalSettings();
+    saveGlobalSettings(settings);
 }
 
-function removeFromEnabledWebsiteList(url){
+function removeFromEnabledWebsiteList(settings, url){
+    let list = getEnabledWebsiteList();
 
+    if(list.includes(url)) {
+        let index = list.indexOf(url);
+        if (index !== -1) {
+            list.splice(index, 1);
+        }
+    }
+
+    saveEnabledWebsiteList(settings, list);
 }
 
-function addToEnabledWebsiteList(url) {
+// Note: url must only include the hostname
+function addToEnabledWebsiteList(settings, url) {
+    let list = getEnabledWebsiteList();
 
+    if(!list.includes(url)) {
+        list.push(url);
+    }
+
+    saveEnabledWebsiteList(list);
 }
 
 

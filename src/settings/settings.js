@@ -42,7 +42,12 @@ $("#source-select").on('click', async function () {
 });
 
 // TODO: hover-enabled table
+$(".delete-website").on('click', function () {
+    let hostname = $(this).attr("data-url");
 
+    removeFromEnabledWebsiteList(globalSettings, hostname);
+    updateEnabledTable($("#enabled-website-tbody"));
+});
 
 function init() {
     globalSettings = getGlobalSettings();
@@ -114,7 +119,7 @@ function updateEnabledTable(parent) {
     parent.empty();
     let rowIter = 1;
     list.forEach((websiteURL) => {
-        parent.append("<tr><th scope='row'>" + rowIter + "</th><td>" + websiteURL + "</td><td class='delete-website'><img class='trash-icon' src='../assets/trash.svg' alt='trash icon'></td></tr>");
+        parent.append("<tr><th scope='row'>" + rowIter + "</th><td>" + websiteURL + "</td><td class='delete-website' data-url='"+websiteURL+"'><img class='trash-icon' src='../assets/trash.svg' alt='trash icon'></td></tr>");
         rowIter++;
     });
 }
