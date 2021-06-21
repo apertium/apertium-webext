@@ -242,15 +242,17 @@ function saveEnabledWebsiteList(settings, newList) {
     saveGlobalSettings(settings);
 }
 
-function removeFromEnabledWebsiteList(settings, url){
+function removeFromEnabledWebsiteList(settings, hostname){
     let list = getEnabledWebsiteList();
 
-    if(list.includes(url)) {
-        let index = list.indexOf(url);
+    if(list.includes(hostname)) {
+        let index = list.indexOf(hostname);
         if (index !== -1) {
             list.splice(index, 1);
         }
     }
+
+    console.log(list);
 
     saveEnabledWebsiteList(settings, list);
 }
