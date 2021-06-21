@@ -255,15 +255,15 @@ function removeFromEnabledWebsiteList(settings, url){
     saveEnabledWebsiteList(settings, list);
 }
 
-// Note: url must only include the hostname
 function addToEnabledWebsiteList(settings, url) {
+    let hostname = new URL(url).hostname;
     let list = getEnabledWebsiteList();
 
-    if(!list.includes(url)) {
-        list.push(url);
+    if(!list.includes(hostname)) {
+        list.push(hostname);
     }
 
-    saveEnabledWebsiteList(list);
+    saveEnabledWebsiteList(settings, list);
 }
 
 

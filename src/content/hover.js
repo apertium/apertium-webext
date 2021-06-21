@@ -10,7 +10,7 @@ function addHoverTag() {
 
     // bind to each hover
     $('hover').hover(
-        function() { $('#word').text($(this).css('background-color','#ffff66').text()); },
+        function() { $('#word').text($(this).css({"background-color":"#b4b4b4", "transition-delay":".5s"}).text()); },
         function() { $('#word').text(''); $(this).css('background-color',''); }
     );
 }

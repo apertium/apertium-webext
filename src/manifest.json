@@ -46,6 +46,7 @@
   ],
   "permissions": [
     "tabs",
-    "contextMenus"
+    "contextMenus",
+    "activeTab"
   ]
 }
