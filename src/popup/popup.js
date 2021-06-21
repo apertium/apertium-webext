@@ -100,15 +100,24 @@ $("#translate-webpage-button").on('click', function () {
 });
 
 // TODO: Enable hover if inactive before, disable if active
-$("#enable-hover-checkbox").on('click', function () {
+$("#enable-hover-checkbox").on('click', async function () {
+    await chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+        let url = tabs[0].url;
 
+        if($(this).is(":checked")){
+            addToEnabledWebsiteList(globalSettings, url);
+        } else {
+            let hostname = new URL(url).hostname;
+            removeFromEnabledWebsiteList(globalSettings, hostname);
+        }
+    });
 });
 
 
 
-function init() {
+async function init() {
     globalSettings = getGlobalSettings();
-    console.log(globalSettings)
+    await setCheckBox($("#enable-hover-checkbox"));
     setTargetLanguage(globalSettings.defaultLanguage);
     createSourceDropdown($("#source-dropdown-div"), globalSettings.defaultLanguage);
     createTargetDropdown($("#target-dropdown-div"));
@@ -183,6 +192,17 @@ async function getSourceLanguage(){
     } else {
         return languageCode
     }
+}
+
+async function setCheckBox(checkbox){
+    await chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+        let hostname = new URL(tabs[0].url).hostname;
+        let list = getEnabledWebsiteList();
+
+        if(list.includes(hostname)){
+            checkbox.prop('checked', true);
+        }
+    });
 }
 
 function setTargetLanguage(targetLanguage) {
