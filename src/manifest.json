@@ -41,7 +41,8 @@
         "content/hover.js",
         "background/storage.js",
         "content/content.js"
-      ]
+      ],
+      "css": ["content/hover.css"]
     }
   ],
   "permissions": [
