@@ -99,7 +99,7 @@ $("#translate-button").on('click', async function () {
 $("#translate-webpage-button").on('click', function () {
 });
 
-// TODO: Enable hover if inactive before, disable if active
+// Enable hover if inactive before, disable if active
 $("#enable-hover-checkbox").on('click', async function () {
     await chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;

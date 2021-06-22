@@ -216,7 +216,7 @@ function getLanguageCodeMap(){
 }
 
 
-//API EndPoints
+// API EndPoints
 function getLangPairsEndpoint() {
     return getGlobalSettings().apertiumSource + "listPairs";
 }
@@ -226,7 +226,7 @@ function getTranslationEndpoint() {
 }
 
 
-//TODO: Enabled Website List
+// Enabled Website List
 function getEnabledWebsiteList(){
     let settings = getGlobalSettings();
     return settings.enabledWebsites;
@@ -268,7 +268,7 @@ function addToEnabledWebsiteList(settings, url) {
 }
 
 
-//Source/Target Language Lists
+// Source/Target Language Lists
 function getSourceList() {
     let languageList = getLangPairs().langPairs;
     let list = [];
