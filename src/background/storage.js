@@ -46,7 +46,7 @@ function createLanguagePairs(languageList){
 
     let langPairs = {
         last_updated: current.toLocaleString(),
-        source: globalSettings.apertiumSource,
+        source: getGlobalSettings().apertiumSource,
         langPairs: languageList
     };
 
@@ -61,8 +61,7 @@ async function updateLanguagePairs() {
     let languagePairsJSON = JSON.stringify(createLanguagePairs(languageList));
 
     localStorage.setItem("apertium.langPairs", languagePairsJSON);
-    globalSettings.lastUpdated = time;
-    setLastUpdated(time);
+    getGlobalSettings().lastUpdated = time;
 }
 
 function getLanguageCodeMap(){
@@ -219,11 +218,11 @@ function getLanguageCodeMap(){
 
 //API EndPoints
 function getLangPairsEndpoint() {
-    return globalSettings.apertiumSource + "listPairs";
+    return getGlobalSettings().apertiumSource + "listPairs";
 }
 
 function getTranslationEndpoint() {
-    return globalSettings.apertiumSource + "translate";
+    return getGlobalSettings().apertiumSource + "translate";
 }
 
 

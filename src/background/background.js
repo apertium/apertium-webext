@@ -10,7 +10,9 @@ browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     }
 });
 
-browser.runtime.onInstalled.addListener(function () {
+browser.runtime.onInstalled.addListener(async function () {
+    await getGlobalSettings();
+    await updateLanguagePairs();
     browser.contextMenus.create({
         "id": "enableTranslation",
         "title": "Enable Hover-On Translation",
