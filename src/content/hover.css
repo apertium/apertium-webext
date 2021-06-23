@@ -113,3 +113,9 @@
     display: block;
     z-index: 50;
 }
+
+[data-tooltip]:hover{
+    animation-delay: 100ms;
+    -moz-animation-delay: 100ms;
+    -webkit-animation-delay: 100ms;
+}
