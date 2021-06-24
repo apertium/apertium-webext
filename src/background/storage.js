@@ -216,6 +216,8 @@ function getLanguageCodeMap(){
 }
 
 async function detectLanguage(text){
+    text = text.replace(/\W/g, ' ')
+
     let url = new URL(getDetectLanguageEndpoint());
     let params = {q: text};
     url.search = new URLSearchParams(params).toString();
