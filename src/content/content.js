@@ -1,4 +1,3 @@
-
 chrome.runtime.sendMessage({method: "getSettings"}, function (response) {
     let settings = response.settings;
     addHoverElements(settings);
