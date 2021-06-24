@@ -215,6 +215,24 @@ function getLanguageCodeMap(){
     }
 }
 
+async function detectLanguage(text){
+    let url = new URL(getDetectLanguageEndpoint());
+    let params = {q: text};
+    url.search = new URLSearchParams(params).toString();
+
+    let possibleLanguageList = await fetch(url)
+        .then(response => response.json());
+
+    let max = -Infinity, x, languageCode;
+    for( x in possibleLanguageList) {
+        if( possibleLanguageList[x] > max) {
+            max = possibleLanguageList[x];
+            languageCode = x;
+        }
+    }
+
+    return languageCode;
+}
 
 // API EndPoints
 function getLangPairsEndpoint() {
@@ -223,6 +241,10 @@ function getLangPairsEndpoint() {
 
 function getTranslationEndpoint() {
     return getGlobalSettings().apertiumSource + "translate";
+}
+
+function getDetectLanguageEndpoint() {
+    return getGlobalSettings().apertiumSource + "identifyLang"
 }
 
 

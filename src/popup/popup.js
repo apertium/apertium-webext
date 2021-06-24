@@ -165,8 +165,9 @@ async function getTranslation(inputText, sourceLanguage, targetLanguage) {
     return outputText;
 }
 
-async function detectInputLanguage() {
-    // TODO
+function detectInputLanguage() {
+    let inputText = getInputText();
+    return detectLanguage(inputText);
 }
 
 function getTargetLanguage(){
@@ -187,8 +188,8 @@ async function getSourceLanguage(){
         $("#source-language").addClass('error');
         return null;
     } else if (languageCode === 'detect') {
-        await detectInputLanguage();
-        return 'detect';
+        let detectCode = await detectInputLanguage();
+        return detectCode;
     } else {
         return languageCode
     }
