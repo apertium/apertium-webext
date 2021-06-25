@@ -23,11 +23,7 @@
     "512": "assets/icons/icon512.png"
   },
   "background": {
-    "scripts": [
-      "background/jquery.min.js",
-      "background/storage.js",
-      "background/background.js"
-    ],
+    "page": "background/background.html",
     "persistent": false
   },
   "content_scripts": [
