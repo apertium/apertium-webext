@@ -2,12 +2,14 @@ let globalSettings;
 init()
 
 // Sets default language
-$("#default-target-language-button").on('click', function () {
+$("#default-target-language-button").on('click', function (e) {
+    e.stopPropagation();
+
     let dropdown = $("#target-language-dropdown")[0];
-    if (dropdown.style.display === "") {
+    if (dropdown.style.display === "none") {
         dropdown.style.display = "block";
     } else {
-        dropdown.style.display = "";
+        dropdown.style.display = "none";
     }
 });
 
@@ -19,12 +21,16 @@ $(".enabled-language").on('click', function () {
     saveGlobalSettings(globalSettings);
 });
 
-// TODO: delete a website from the hover list
+// Deletes a website from the hover list
 $(".delete-website").on('click', function () {
     let hostname = $(this).attr("data-url");
 
     removeFromEnabledWebsiteList(globalSettings, hostname);
     updateEnabledTable($("#enabled-website-tbody"));
+});
+
+$(document).click(function() {
+    $("#target-language-dropdown").hide();
 });
 
 function init() {

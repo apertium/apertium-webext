@@ -1,12 +1,14 @@
 let globalSettings;
 init();
 
-$("#default-target-language-button").on('click', function () {
+$("#default-target-language-button").on('click', function (e) {
+    e.stopPropagation();
+
     let dropdown = $("#target-language-dropdown")[0];
-    if (dropdown.style.display === "") {
+    if (dropdown.style.display === "none") {
         dropdown.style.display = "block";
     } else {
-        dropdown.style.display = "";
+        dropdown.style.display = "none";
     }
 });
 
@@ -41,12 +43,16 @@ $("#source-select").on('click', async function () {
     saveGlobalSettings(globalSettings);
 });
 
-// TODO: hover-enabled table
+// Delete a website from hover-enabled table
 $(".delete-website").on('click', function () {
     let hostname = $(this).attr("data-url");
 
     removeFromEnabledWebsiteList(globalSettings, hostname);
     updateEnabledTable($("#enabled-website-tbody"));
+});
+
+$(document).click(function(){
+    $("#target-language-dropdown").hide();
 });
 
 function init() {

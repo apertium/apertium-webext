@@ -225,11 +225,9 @@ tr, td, th {
 
 .dropdown {
     position: relative;
-    display: inline-block;
 }
 
 .language-dropdown {
-    display: none;
     position: absolute;
     background-color: #f1f1f1;
     max-height: 9em;

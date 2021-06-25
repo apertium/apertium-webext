@@ -3,12 +3,14 @@ let globalSettings;
 init();
 
 // Displays source languages available
-$("#source-language-button").on('click', function () {
+$("#source-language-button").on('click', function (e) {
+    e.stopPropagation();
+
     let dropdown = $("#source-dropdown-div")[0];
-    if (dropdown.style.display === "") {
+    if (dropdown.style.display === "none") {
         dropdown.style.display = "block";
     } else {
-        dropdown.style.display = "";
+        dropdown.style.display = "none";
     }
 });
 
@@ -24,12 +26,14 @@ $("#source-dropdown-div").on('click', '.source-language-option', function () {
 });
 
 // Displays target languages available for current source
-$("#target-language-button").on('click', function () {
+$("#target-language-button").on('click', function (e) {
+    e.stopPropagation();
+
     let dropdown = $("#target-dropdown-div")[0];
-    if (dropdown.style.display === "") {
+    if (dropdown.style.display === "none") {
         dropdown.style.display = "block";
     } else {
-        dropdown.style.display = "";
+        dropdown.style.display = "none";
     }
 });
 
@@ -113,7 +117,10 @@ $("#enable-hover-checkbox").on('click', async function () {
     });
 });
 
-
+$(document).click(function(){
+    $("#target-dropdown-div").hide();
+    $("#source-dropdown-div").hide();
+});
 
 async function init() {
     globalSettings = getGlobalSettings();
@@ -188,8 +195,7 @@ async function getSourceLanguage(){
         $("#source-language").addClass('error');
         return null;
     } else if (languageCode === 'detect') {
-        let detectCode = await detectInputLanguage();
-        return detectCode;
+        return await detectInputLanguage();
     } else {
         return languageCode
     }
