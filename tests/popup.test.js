@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const assert = require('assert');
-const path = require('path')
+const path = require('path');
 
 const timeout = 1000;
 const extensionPath = path.join(__dirname, '..','src/');
@@ -23,28 +23,28 @@ describe('Pop-Up Testing', async function () {
         await extensionPopup.goto(`chrome-extension://${extensionID}/${extensionEndURL}`);
 
         let sourceDropdown = await extensionPopup.$('#source-dropdown-div');
-        assert.ok(sourceDropdown, 'Source Dropdown does not Render');
+        assert.ok(sourceDropdown, 'Source Dropdown does not Load');
 
         let targetDropdown = await extensionPopup.$('#target-dropdown-div');
-        assert.ok(targetDropdown, 'Target Dropdown does not Render');
+        assert.ok(targetDropdown, 'Target Dropdown does not Load');
 
         let switchButton = await extensionPopup.$('#exchange-source-target');
-        assert.ok(switchButton, 'Switch Language Button does not Render');
+        assert.ok(switchButton, 'Switch Language Button does not Load');
 
         let inputBar = await extensionPopup.$('#input-text-bar');
-        assert.ok(inputBar, 'Input Bar does not Render');
+        assert.ok(inputBar, 'Input Bar does not Load');
 
         let outputBar = await extensionPopup.$('#output-text-bar');
-        assert.ok(outputBar, 'Output Bar does not Render');
+        assert.ok(outputBar, 'Output Bar does not Load');
 
         let translateButton = await extensionPopup.$('#translate-button');
-        assert.ok(translateButton, 'Translate Button does not Render');
+        assert.ok(translateButton, 'Translate Button does not Load');
 
         let translateWebpageButton = await extensionPopup.$('#translate-webpage-button');
-        assert.ok(translateWebpageButton, 'Translate Webpage Button does not Render');
+        assert.ok(translateWebpageButton, 'Translate Webpage Button does not Load');
 
         let enableCheckBox = await extensionPopup.$('#enable-hover-checkbox');
-        assert.ok(enableCheckBox, 'Enable CheckBox does not Render');
+        assert.ok(enableCheckBox, 'Enable CheckBox does not Load');
     });
 
     it('Language Dropdowns can be Loaded', async function (){
@@ -58,7 +58,7 @@ describe('Pop-Up Testing', async function () {
     after(async function (){
         await browser.close();
     });
-})
+});
 
 async function getExtensionID(browser) {
     //required to let browser page load
@@ -88,19 +88,3 @@ async function loadExtension() {
 
     extensionID = await getExtensionID(browser);
 }
-
-// (async () => {
-//     try {
-//         await loadExtension();
-//
-//         const page = await browser.newPage();
-//         await page.goto(`chrome-extension://${extensionID}/${extensionEndURL}`);
-//
-//         page.waitForTimeout(2000);
-//         await page.screenshot({path: 'chromium-extension.png'});
-//
-//         await browser.close();
-//     } catch (err) {
-//         console.error(err);
-//     }
-// })();
