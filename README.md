@@ -23,7 +23,7 @@
 2. Check the box next to Developer Mode.
 3. Click Load Unpacked Extension and select the `apertium-webext/src/` directory within apertium-webext.
 
-And you're done! you can use the extension to translate within the pop-up or hover on words as you like.
+And you're done! you can use the extension to translate within the pop-up or hover on words as you like. For Additional Information, check the [Getting Started with Extensions](https://developer.chrome.com/docs/extensions/mv3/getstarted/) Page on Chrome Dev.
 
 ### FireFox
 
