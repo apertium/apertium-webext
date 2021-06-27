@@ -7,10 +7,13 @@ npm init
 npm install puppeteer mocha --dev
 ```
 
+<br>
+
 then run the tests with
 
 ```
 cd tests/
 mocha popup.test.js
+mocha options.test.js
 mocha settings.test.js
 ```

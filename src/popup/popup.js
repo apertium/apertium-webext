@@ -51,7 +51,7 @@ $("#target-dropdown-div").on('click', '.target-language-option', function () {
 
 //Exchange source and target languages if possible
 $("#exchange-source-target").on('click', async function () {
-    let sourceLanguage = await getSourceLanguage();
+    let sourceLanguage = await getSourceLanguage(true);
     let targetLanguage = await getTargetLanguage();
 
     console.log(sourceLanguage+targetLanguage);
@@ -117,7 +117,7 @@ $("#enable-hover-checkbox").on('click', async function () {
     });
 });
 
-$(document).click(function(){
+$(document).on('click', function(){
     $("#target-dropdown-div").hide();
     $("#source-dropdown-div").hide();
 });
@@ -162,7 +162,7 @@ async function getTranslation(inputText, sourceLanguage, targetLanguage) {
     langPair = langPair.concat(sourceLanguage, "|", targetLanguage);
 
     let url = new URL(getTranslationEndpoint());
-    let params = {langpair: langPair, q: inputText, format: "html"};
+    let params = {langpair: langPair, q: inputText, deformat: "html"};
     url.search = new URLSearchParams(params).toString();
 
     outputText = await fetch(url)
@@ -188,14 +188,17 @@ function getTargetLanguage(){
     }
 }
 
-async function getSourceLanguage(){
+async function getSourceLanguage(noDetect = false) {
     let languageCode = $("#source-language").val();
 
     if (languageCode === undefined) {
         $("#source-language").addClass('error');
         return null;
     } else if (languageCode === 'detect') {
-        return await detectInputLanguage();
+        if (noDetect)
+            return 'detect';
+        else
+            return await detectInputLanguage();
     } else {
         return languageCode
     }
