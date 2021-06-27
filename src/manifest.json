@@ -33,12 +33,12 @@
       ],
       "all_frames": true,
       "js": [
-        "background/jquery.min.js",
-        "content/hover.js",
-        "background/storage.js",
+        "lib/jquery.min.js",
+        "lib/hover.js",
+        "lib/storage.js",
         "content/content.js"
       ],
-      "css": ["content/hover.css"]
+      "css": ["content/content.css"]
     }
   ],
   "permissions": [

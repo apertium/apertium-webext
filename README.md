@@ -65,15 +65,16 @@ Check the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edge/e
 ├── misc/...
 ├── src
 │   ├── assets/...
-│   ├── background
-│   │   ├── background.html/js
-│   │   ├── jquery.min.js
-│   │   └── storage.js
-│   ├── content
-│   │   ├── content.js
-│   │   └── hover.css/js
-│   ├── popup
+│   ├── lib
 │   │   ├── bootstrap.min.css
+│   │   ├── jquery.min.js
+│   │   ├── hover.js
+│   │   └── storage.js
+│   ├── background
+│   │   └── background.html/js
+│   ├── content
+│   │   └── content.css/js
+│   ├── popup
 │   │   ├── options.html/js
 │   │   └── popup.html/css/js
 │   ├── settings
@@ -86,8 +87,13 @@ Check the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edge/e
 │   └── README.md
 └── README.md
 ```
+
+- **lib/**    
+All library-ish files i.e. those that contain only function definitions which are called from multiple places. jQuery and Bootstrap are well known, storage.js is meant for all functions that deal with localStorage, and hover for hover-translation related stuff.
+
+
 - **Background/**   
-background.js contains all background scripts such as the ContextMenu option, the script to redirect the user to the settings page on being installed and so on. storage.js is meant for all functions that deal with the two localStorage Objects, apertium.settings and apertium.langPairs.
+background.js contains all background scripts such as the ContextMenu option, the script to redirect the user to the settings page on being installed and so on. 
 
 
 - **Content/**    
