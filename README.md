@@ -6,7 +6,7 @@
 ## Table of Contents
 
 - [Installation](#installation)
-  - [Chrome/Chromium](#chrome-and-other-chromium-based-browsers)
+  - [Chrome/Chromium](#chrome-and-chromium)
   - [FireFox](#firefox)
   - [Edge](#microsoft-edge)
 - [Navigation](#navigation)
@@ -15,7 +15,7 @@
 
 ## Installation
 
-### Chrome and other Chromium-based Browsers
+### Chrome and Chromium
 
 <img align="right" width="360" src="https://github.com/apertium/apertium-webext/blob/main/misc/chrome-extension-select.png">
 
@@ -23,13 +23,25 @@
 
 1. Navigate to `chrome://extensions` in your browser. You can also access this page by clicking on the Chrome menu on the top right side of the Omnibox (three vertical dots), hovering over More Tools and selecting Extensions.
 2. Check the box next to Developer Mode.
-3. Click Load Unpacked Extension and select the `apertium-webext/src/` directory within apertium-webext.
+3. Click Load Unpacked Extension and select the `apertium-webext/src/` directory.
+4. Finally, Enable the plugin by checking the toggle switch in the extension details box. 
 
 <br>
 
 And you're done! you can use the extension to translate within the pop-up or hover on words as you like. For Additional Information, check the [Getting Started with Extensions](https://developer.chrome.com/docs/extensions/mv3/getstarted/) Page on Chrome Dev.
 
 ### FireFox
+
+<img align="right" width="360" src="https://github.com/apertium/apertium-webext/blob/main/misc/firefox-extension-select.png">
+
+<br>
+
+1. Navigate to `about:debugging` and select 'This FireFox'
+2. After clicking on "Load Temporary Add-on", select `apertium-webext/src/manifest.json`
+
+<br>
+
+With that, you're done. For more detailed instructions, check out [this MDN page](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing)
 
 ### Microsoft Edge
 
