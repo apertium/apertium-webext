@@ -38,6 +38,9 @@ And you're done! you can use the extension to translate within the pop-up or hov
 
 1. Navigate to `about:debugging` and select 'This FireFox'
 2. After clicking on "Load Temporary Add-on", select `apertium-webext/src/manifest.json`
+3. Alternatively, you can also run it from command line using mozilla's [web-ext utility](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/)
+4. Yet another option with Firefox is to load the extension from `about:addons` which can be found in the browser omnibox as 'Addons and Themes'
+5. Zip the extension files by running `zip -r apertium-webext src/` and pass the zip file to 'Load Extension from File' in the settings dialog
 
 <br>
 
