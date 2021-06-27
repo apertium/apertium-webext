@@ -17,7 +17,7 @@
 
 ### Chrome and Chromium
 
-<img align="right" width="360" src="https://github.com/apertium/apertium-webext/blob/main/misc/chrome-extension-select.png">
+<img align="right" width="360" src="https://github.com/apertium/apertium-webext/blob/main/misc/chrome-extension-select.png" alt="chrome-extension-select">
 
 <br>
 
@@ -32,15 +32,14 @@ And you're done! you can use the extension to translate within the pop-up or hov
 
 ### FireFox
 
-<img align="right" width="360" src="https://github.com/apertium/apertium-webext/blob/main/misc/firefox-extension-select.png">
+<img align="right" width="360" src="https://github.com/apertium/apertium-webext/blob/main/misc/firefox-extension-select.png" alt="firefox extension-select">
 
 <br>
 
 1. Navigate to `about:debugging` and select 'This FireFox'
 2. After clicking on "Load Temporary Add-on", select `apertium-webext/src/manifest.json`
-3. Alternatively, you can also run it from command line using mozilla's [web-ext utility](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/)
-4. Yet another option with Firefox is to load the extension from `about:addons` which can be found in the browser omnibox as 'Addons and Themes'
-5. Zip the extension files by running `zip -r apertium-webext src/` and pass the zip file to 'Load Extension from File' in the settings dialog
+3. Yet another option with Firefox is to load the extension from `about:addons` which can be found in the browser omnibox as 'Addons and Themes'
+4. Zip the extension files by running `zip -r apertium-webext src/` and pass the zip file to 'Load Extension from File' in the settings dialog
 
 <br>
 
@@ -48,31 +47,47 @@ With that, you're done. For more detailed instructions, check out [this MDN page
 
 ### Microsoft Edge
 
+<img align="right" width="360" src="https://github.com/apertium/apertium-webext/blob/main/misc/edge-extension-select.png" alt="edge-extension-select">
+
+<br>
+
+1. Open the `edge://extensions` page by choosing the omnibox(three dots) at the top of your browser, and then selecting 'Extensions'.
+2. Turn on Developer Mode using the toggle at the bottom left of the page.
+3. Select Load Unpacked and pass `apertium-webext/src/` in the dialog box that opens.
+
+<br>
+
+Check the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/extension-sideloading) for additional details.
 
 ## Navigation
 ```
 .
-├── README.md
+├── misc/...
 ├── src
 │   ├── assets/...
 │   ├── background
-│   │   ├── background.js
+│   │   ├── background.html/js
 │   │   ├── jquery.min.js
 │   │   └── storage.js
 │   ├── content
 │   │   ├── content.js
-│   │   └── hover.js
-│   ├── manifest.json
+│   │   └── hover.css/js
 │   ├── popup
 │   │   ├── bootstrap.min.css
 │   │   ├── options.html/js
 │   │   └── popup.html/css/js
-│   └── settings
-│       └── settings.html/css/js
-└── tests
+│   ├── settings
+│   │   └── settings.html/css/js
+│   └── manifest.json
+├── tests
+│   ├── popup.test.js
+│   ├── options.test.js
+│   ├── settings.test.js
+│   └── README.md
+└── README.md
 ```
 - **Background/**   
-background.js contains all background scripts such as the right-click contextmenu option, the script to redirect the user to the settings page on being installed (TODO) and so on. storage.js is meant for all functions that deal with the two localStorage Objects, apertium.settings and apertium.langPairs.
+background.js contains all background scripts such as the ContextMenu option, the script to redirect the user to the settings page on being installed and so on. storage.js is meant for all functions that deal with the two localStorage Objects, apertium.settings and apertium.langPairs.
 
 
 - **Content/**    
@@ -92,3 +107,5 @@ The manifest for the extension, outlining background scripts, pop-up data and pe
 
 
 ## Contribution
+
+Initially completed as part of [this GSoC Project](https://summerofcode.withgoogle.com/projects/#4924808795521024), all further contributions are welcome.
