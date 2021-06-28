@@ -21,6 +21,21 @@ describe('Settings Testing', async function () {
     it('UI Elements are Rendered', async function (){
         extensionSettings = await browser.newPage();
         await extensionSettings.goto(`chrome-extension://${extensionID}/${extensionEndURL}`);
+
+        let targetButton = await extensionSettings.$('#default-target-language-button');
+        assert.ok(targetButton, ' does not Load');
+
+        let targetDropdown = await extensionSettings.$('#target-language-dropdown');
+        assert.ok(targetDropdown, ' does not Load');
+
+        let sourceSelectDropdown = await extensionSettings.$('#source-select');
+        assert.ok(sourceSelectDropdown, ' does not Load');
+
+        let lastUpdated = await extensionSettings.$('#last-updated');
+        assert.ok(lastUpdated, ' does not Load');
+
+        let websiteTable = await extensionSettings.$('#website-table');
+        assert.ok(websiteTable, ' does not Load');
     });
 
     after(async function (){

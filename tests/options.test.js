@@ -21,6 +21,27 @@ describe('Options Testing', async function () {
     it('UI Elements are Rendered', async function (){
         extensionOptions = await browser.newPage();
         await extensionOptions.goto(`chrome-extension://${extensionID}/${extensionEndURL}`);
+
+        let targetButton = await extensionOptions.$('#default-target-language-button');
+        assert.ok(targetButton, ' does not Load');
+
+        let targetDropdown = await extensionOptions.$('#target-language-dropdown');
+        assert.ok(targetDropdown, ' does not Load');
+
+        let websiteTable = await extensionOptions.$('#website-table');
+        assert.ok(websiteTable, ' does not Load');
+
+        let additionalSettingsLink = await extensionOptions.$('#additional-settings');
+        assert.ok(additionalSettingsLink, ' does not Load');
+
+    });
+
+    it('Website Table shows elements', async function (){
+        //TODO
+    });
+
+    it('Website can be deleted from Table', async function () {
+        //TODO
     });
 
     after(async function (){
