@@ -2,6 +2,7 @@
 
 [Apertium Web Extension](https://wiki.apertium.org/wiki/Apertium-Web-Extension) is a Cross-Browser WebExtension Interface for the [Apertium APy](https://github.com/apertium/apertium-apy) service. Apertium WebExt is capable of word translation, website translation as well as offering on-site word translation via use of hover-on gists. It relies entirely on the API service powered by [Apertium](https://apertium.org/).
 
+<br>
 
 ## Table of Contents
 
@@ -12,6 +13,7 @@
 - [Navigation](#navigation)
 - [Contribution](#contribution)
 
+<br>
 
 ## Installation
 
@@ -21,14 +23,16 @@
 
 <br>
 
-1. Navigate to `chrome://extensions` in your browser. You can also access this page by clicking on the Chrome menu on the top right side of the Omnibox (three vertical dots), hovering over More Tools and selecting Extensions.
-2. Check the box next to Developer Mode.
-3. Click Load Unpacked Extension and select the `apertium-webext/src/` directory.
-4. Finally, Enable the plugin by checking the toggle switch in the extension details box. 
+1. Navigate to `chrome://extensions` in your browser. You can also access this page by clicking on the Omnibox (three vertical dots), hovering over More Tools and selecting Extensions
+2. Check the box next to Developer Mode
+3. Click Load Unpacked Extension and select the `apertium-webext/src/` directory
+4. Finally, Enable the plugin by checking the toggle switch in the extension details box
 
 <br>
 
 And you're done! you can use the extension to translate within the pop-up or hover on words as you like. For Additional Information, check the [Getting Started with Extensions](https://developer.chrome.com/docs/extensions/mv3/getstarted/) Page on Chrome Dev.
+
+<br>
 
 ### FireFox
 
@@ -43,21 +47,26 @@ And you're done! you can use the extension to translate within the pop-up or hov
 
 <br>
 
-With that, you're done. For more detailed instructions, check out [this MDN page](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing)
+With that, you're done. For more detailed instructions, check out [this MDN page](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing).
+
+<br>
 
 ### Microsoft Edge
 
-<img align="right" width="360" src="https://github.com/apertium/apertium-webext/blob/main/misc/edge-extension-select.png" alt="edge-extension-select">
+<img align="right" width="480" src="https://github.com/apertium/apertium-webext/blob/main/misc/edge-extension-select.png" alt="edge-extension-select">
 
 <br>
 
-1. Open the `edge://extensions` page by choosing the omnibox(three dots) at the top of your browser, and then selecting 'Extensions'.
-2. Turn on Developer Mode using the toggle at the bottom left of the page.
-3. Select Load Unpacked and pass `apertium-webext/src/` in the dialog box that opens.
+1. Open `edge://extensions` by choosing the omnibox (three dots) at the top, and then selecting 'Extensions'
+2. Switch on Developer Mode at the bottom of the screen
+3. Select Load Unpacked and choose `apertium-webext/src/`
 
 <br>
+<br>
 
-Check the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/extension-sideloading) for additional details.
+Check out the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/extension-sideloading) for additional details regarding installation.
+
+<br>
 
 ## Navigation
 ```
@@ -111,6 +120,7 @@ files related to the main settings page with all options.
 - **Manifest/**   
 The manifest for the extension, outlining background scripts, pop-up data and permissions.
 
+<br>
 
 ## Contribution
 
