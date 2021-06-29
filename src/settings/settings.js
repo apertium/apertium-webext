@@ -51,6 +51,14 @@ $(".delete-website").on('click', function () {
     updateEnabledTable($("#enabled-website-tbody"));
 });
 
+// Add website from table
+$("#add-website-button").on('click', function () {
+    let url = $('#website-input').val();
+
+    addToEnabledWebsiteList(globalSettings, url);
+    updateEnabledTable($("#enabled-website-tbody"));
+});
+
 $(document).click(function(){
     $("#target-language-dropdown").hide();
 });

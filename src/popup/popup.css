@@ -87,7 +87,7 @@ tr, td, th {
     font-size: smaller;
 }
 
-.btn:focus,.btn:active, textarea:focus, textarea:active {
+.btn:focus,.btn:active, textarea:focus, textarea:active, input:focus, input:active {
     outline: none !important;
     box-shadow: none !important;
 }

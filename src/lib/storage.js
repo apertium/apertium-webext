@@ -281,10 +281,16 @@ function removeFromEnabledWebsiteList(settings, hostname){
 }
 
 function addToEnabledWebsiteList(settings, url) {
-    let hostname = new URL(url).hostname;
+    let hostname;
     let list = getEnabledWebsiteList();
 
-    if(!list.includes(hostname)) {
+    if (isHostname(url)) {
+        hostname = url;
+    } else {
+        hostname = new URL(url).hostname;
+    }
+
+    if (!list.includes(hostname)) {
         list.push(hostname);
     }
 
@@ -326,9 +332,19 @@ function getTargetwithSource(source) {
     let languageList = getLangPairs().langPairs;
     let list = [];
     for (let i = 0; i < languageList.length; i++) {
-        if(languageList[i].sourceLanguage === source) {
+        if (languageList[i].sourceLanguage === source) {
             list.push(languageList[i].targetLanguage);
         }
     }
     return [...new Set(list)];
+}
+
+
+function isHostname(url) {
+    let validHostnameRegex = "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])";
+    let r = RegExp(validHostnameRegex);
+
+    console.log(r.test(url), url)
+
+    return r.test(url);
 }

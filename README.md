@@ -26,7 +26,7 @@
 1. Navigate to `chrome://extensions` in your browser. You can also access this page by clicking on the Omnibox (three vertical dots), hovering over More Tools and selecting Extensions
 2. Check the box next to Developer Mode
 3. Click Load Unpacked Extension and select the `apertium-webext/src/` directory
-4. Finally, Enable the plugin by checking the toggle switch in the extension details box
+4. Finally, Enable the plugin by checking the toggle
 
 <br>
 
@@ -47,7 +47,7 @@ And you're done! you can use the extension to translate within the pop-up or hov
 
 <br>
 
-With that, you're done. For more detailed instructions, check out [this MDN page](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing).
+With that, you're done. For more detailed instructions, there's [this MDN page](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing).
 
 <br>
 
@@ -64,7 +64,7 @@ With that, you're done. For more detailed instructions, check out [this MDN page
 <br>
 <br>
 
-Check out the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/extension-sideloading) for additional details regarding installation.
+Refer to the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/extension-sideloading) for additional details regarding installation.
 
 <br>
 

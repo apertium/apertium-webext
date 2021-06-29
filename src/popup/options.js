@@ -29,7 +29,15 @@ $(".delete-website").on('click', function () {
     updateEnabledTable($("#enabled-website-tbody"));
 });
 
-$(document).click(function() {
+// Add website from table
+$("#add-website-button").on('click', function () {
+   let url = $('#website-input').val();
+
+   addToEnabledWebsiteList(globalSettings, url);
+   updateEnabledTable($("#enabled-website-tbody"));
+});
+
+$(document).click(function () {
     $("#target-language-dropdown").hide();
 });
 
@@ -48,7 +56,7 @@ function updateEnabledTable(parent) {
     parent.empty();
     let rowIter = 1;
     list.forEach((websiteURL) => {
-        parent.append("<tr><th scope='row'>" + rowIter + "</th><td>" + websiteURL + "</td><td class='delete-website' data-url='"+websiteURL+"'><img class='trash-icon' src='../assets/trash.svg' alt='trash icon'></td></tr>");
+        parent.append("<tr><th scope='row'>" + rowIter + "</th><td>" + websiteURL + "</td><td class='delete-website' data-url='" + websiteURL + "'><img class='trash-icon' src='../assets/trash.svg' alt='trash icon'></td></tr>");
         rowIter++;
     });
 }

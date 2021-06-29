@@ -72,6 +72,8 @@ tr, td, th {
     position: relative;
     overflow: auto;
 
+    margin-bottom: 2em;
+
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
