@@ -5,8 +5,6 @@ window.browser = (function () {
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.method === "getSettings") {
         sendResponse({settings: getGlobalSettings()});
-    } else {
-        sendResponse({}); // snub them.
     }
 });
 

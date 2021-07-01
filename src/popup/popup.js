@@ -101,17 +101,24 @@ $("#translate-button").on('click', async function () {
 
 // TODO: Translate the entire current webpage
 $("#translate-webpage-button").on('click', function () {
+    window.browser = (function () {
+        return window.browser || window.chrome;
+    })();
+
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        chrome.tabs.sendMessage(tabs[0].id, {method: "translateWebpage"}, function(response) {});
+    });
 });
 
 // Enable hover if inactive before, disable if active
 $("#enable-hover-checkbox").on('click', async function () {
     await chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
+        let hostname = new URL(url).hostname;
 
         if($(this).is(":checked")){
-            addToEnabledWebsiteList(globalSettings, url);
+            addToEnabledWebsiteList(globalSettings, hostname);
         } else {
-            let hostname = new URL(url).hostname;
             removeFromEnabledWebsiteList(globalSettings, hostname);
         }
     });

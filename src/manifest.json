@@ -34,7 +34,7 @@
       "all_frames": true,
       "js": [
         "lib/jquery.min.js",
-        "lib/hover.js",
+        "lib/translate.js",
         "lib/storage.js",
         "content/content.js"
       ],

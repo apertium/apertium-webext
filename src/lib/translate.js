@@ -13,7 +13,7 @@ function addHoverTag(targetLanguage, sourceLanguage) {
         setTimeoutConst = setTimeout(async function () {
             let text = self.attr('data-translation');
             if(self.text() === text) {
-                let translation = await translate(text, sourceLanguage, targetLanguage);
+                let translation = await translateWord(text, sourceLanguage, targetLanguage);
                 self.attr('data-translation', translation);
             }
         }, 1000);
@@ -22,7 +22,7 @@ function addHoverTag(targetLanguage, sourceLanguage) {
     });
 }
 
-async function translate(inputText, sourceLanguage, targetLanguage) {
+async function translateWord(inputText, sourceLanguage, targetLanguage) {
     let outputText;
     let langPair = "";
     langPair = langPair.concat(sourceLanguage, "|", targetLanguage);

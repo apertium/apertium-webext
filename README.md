@@ -77,7 +77,7 @@ Refer to the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edg
 │   ├── lib
 │   │   ├── bootstrap.min.css
 │   │   ├── jquery.min.js
-│   │   ├── hover.js
+│   │   ├── translate.js
 │   │   └── storage.js
 │   ├── background
 │   │   └── background.html/js
@@ -98,26 +98,26 @@ Refer to the [Edge Documentation](https://docs.microsoft.com/en-us/microsoft-edg
 ```
 
 - **lib/**    
-All library-ish files i.e. those that contain only function definitions which are called from multiple places. jQuery and Bootstrap are well known, storage.js is meant for all functions that deal with localStorage, and hover for hover-translation related stuff.
+All library-ish files i.e. those that contain only function definitions which are called from multiple places. There's jQuery 3.6 and Bootstrap 5.0. storage.js is meant for all functions that deal with localStorage, and hover for hover-translation related stuff.
 
 
-- **Background/**   
+- **background/**   
 background.js contains all background scripts such as the ContextMenu option, the script to redirect the user to the settings page on being installed and so on. 
 
 
-- **Content/**    
+- **content/**    
 Modifying the page DOM can only be done through content scripts. The scripts here are triggered on enabled sites and are the ones responsible for the word-hover and webpage translation functionality
 
 
-- **Pop-Up/**   
+- **popup/**   
 holds all the files necessary to build the pop-ups for the main pop-up and the smaller settings pop-up. Also has a local copy of bootstrap 5.
 
 
-- **Settings/**   
+- **settings/**   
 files related to the main settings page with all options.
 
 
-- **Manifest/**   
+- **manifest.json**   
 The manifest for the extension, outlining background scripts, pop-up data and permissions.
 
 <br>
