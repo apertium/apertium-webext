@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const assert = require('assert');
 const path = require('path');
 
-const timeout = 1000;
+const timeout = 1500;
 const extensionPath = path.join(__dirname, '..','src/');
 const extensionName = 'Apertium';
 const extensionEndURL = 'popup/popup.html';
@@ -48,11 +48,50 @@ describe('Pop-Up Testing', async function () {
     });
 
     it('Language Dropdowns can be Loaded', async function (){
+        let sourceDropdownButton = await extensionPopup.$('#source-language-button');
+        let targetDropdownButton = await extensionPopup.$('#target-language-button');
 
+        let sourceDropdown = await extensionPopup.$('#source-dropdown-div');
+        let targetDropdown = await extensionPopup.$('#target-dropdown-div');
+
+        await sourceDropdownButton.evaluate(form => form.click());
+        let sourceDropdownElements = await sourceDropdown.evaluate(dropdown => {
+            return dropdown.children;
+        });
+        assert(sourceDropdownElements, "Source Dropdown Elements do not exist");
+
+
+        await targetDropdownButton.evaluate(form => form.click());
+        let targetDropdownElements = await targetDropdown.evaluate(dropdown => {
+            return dropdown.children;
+        });
+        assert(targetDropdownElements, "Target Dropdown Elements do not exist");
     });
 
     it('In-Popup Translation Works', async function (){
+        let sourceDropdownButton = await extensionPopup.$('#source-language-button');
+        let sourceDropdown = await extensionPopup.$('#source-dropdown-div');
 
+        let inputBar = await extensionPopup.$('#input-text-bar');
+        let outputBar = await extensionPopup.$('#output-text-bar');
+
+        let translateButton = await extensionPopup.$('#translate-button');
+        let switchButton = await extensionPopup.$('#exchange-source-target');
+
+        await sourceDropdownButton.evaluate(form => form.click());
+        await sourceDropdown.evaluate(() => {
+            document.querySelector('option[value="cat"]').click();
+        });
+
+        await switchButton.evaluate(button => button.click());
+
+        await inputBar.evaluate(input => input.value = 'Hello');
+
+        await translateButton.evaluate(button => button.click());
+        await extensionPopup.waitForTimeout(timeout)
+
+        let translation = await outputBar.evaluate(output => {return output.value});
+        assert.deepEqual(translation, "Hola", "Translation gives an incorrect value");
     });
 
     after(async function (){
