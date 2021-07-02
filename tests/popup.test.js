@@ -91,7 +91,7 @@ describe('Pop-Up Testing', async function () {
         await extensionPopup.waitForTimeout(timeout)
 
         let translation = await outputBar.evaluate(output => {return output.value});
-        assert.deepEqual(translation, "Hola", "Translation gives an incorrect value");
+        assert.deepStrictEqual(translation, "Hola", "Translation gives an incorrect value");
     });
 
     after(async function (){
