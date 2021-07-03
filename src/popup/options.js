@@ -23,6 +23,7 @@ $(".enabled-language").on('click', function () {
 
 // Deletes a website from the hover list
 $(".delete-website").on('click', function () {
+    console.log('hi')
     let hostname = $(this).attr("data-url");
 
     removeFromEnabledWebsiteList(globalSettings, hostname);
@@ -58,6 +59,13 @@ function updateEnabledTable(parent) {
     list.forEach((websiteURL) => {
         parent.append("<tr><th scope='row'>" + rowIter + "</th><td>" + websiteURL + "</td><td class='delete-website' data-url='" + websiteURL + "'><img class='trash-icon' src='../assets/trash.svg' alt='trash icon'></td></tr>");
         rowIter++;
+    });
+
+    $(".delete-website").on('click', function () {
+        let hostname = $(this).attr("data-url");
+
+        removeFromEnabledWebsiteList(globalSettings, hostname);
+        updateEnabledTable($("#enabled-website-tbody"));
     });
 }
 

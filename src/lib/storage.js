@@ -5,7 +5,7 @@ function getGlobalSettings() {
         settings = {
             apertiumSource: "https://apertium.org/apy/",
             defaultLanguage: "eng",
-            enabledWebsites: ["en.wikipedia.org", "stackoverflow.com"],
+            enabledWebsites: ["wiki.apertium.org", "en.wikipedia.org"],
             lastUpdated: "on Installation",
             inputSizeLimit: 1000
         };
@@ -343,8 +343,6 @@ function getTargetwithSource(source) {
 function isHostname(url) {
     let validHostnameRegex = "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])";
     let r = RegExp(validHostnameRegex);
-
-    console.log(r.test(url), url)
 
     return r.test(url);
 }

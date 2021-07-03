@@ -88,7 +88,7 @@ describe('Pop-Up Testing', async function () {
         await inputBar.evaluate(input => input.value = 'Hello');
 
         await translateButton.evaluate(button => button.click());
-        await extensionPopup.waitForTimeout(timeout)
+        await extensionPopup.waitForTimeout(timeout);
 
         let translation = await outputBar.evaluate(output => {return output.value});
         assert.deepStrictEqual(translation, "Hola", "Translation gives an incorrect value");
