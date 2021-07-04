@@ -37,3 +37,19 @@ async function translateWord(inputText, sourceLanguage, targetLanguage) {
 
     return outputText;
 }
+
+async function translateWebpage(sourceLanguage, targetLanguage){
+    console.log('inside translatepage');
+    let text;
+    let arr = []
+    //iterate over all elements that are 'parents'
+    $(":parent").each(function () {
+        //filter out those that have innertext
+        text = $(this).ownText();
+        if(text.length > 0 && /[a-zA-Z]/.test(text)) {
+            arr.push(text);
+        }
+    });
+
+    console.log(arr);
+}
