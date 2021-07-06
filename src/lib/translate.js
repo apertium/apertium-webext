@@ -49,7 +49,34 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
 
     textElements = [...new Set(textElements)];
 
-    console.log(textElements);
+    let transportDocument = createNewDocument(textElements);
+    download(transportDocument, 'transport.html');
+}
+
+function createNewDocument(nodeList) {
+    let data = "";
+
+    nodeList.forEach((node, index) => {
+        data += '<' + index + '>';
+        data += node.innerHTML;
+        data += '<\\' + index + '>\n\n';
+    })
+
+    return new Blob([data], {type: 'text/plain'});
+}
+
+// purely for test purposes
+function download(file, filename) {
+    let a = document.createElement("a"), url = URL.createObjectURL(file);
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }, 0);
 }
 
 // everything below courtesy of https://gist.github.com/TinoDidriksen/c41c33ca5809ff297bf7b1608b3a41e2
