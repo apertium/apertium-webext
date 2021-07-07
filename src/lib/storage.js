@@ -245,6 +245,10 @@ function getTranslationEndpoint() {
     return getGlobalSettings().apertiumSource + "translate";
 }
 
+function getTranslateDocEndpoint() {
+    return getGlobalSettings().apertiumSource + "translateDoc";
+}
+
 function getDetectLanguageEndpoint() {
     return getGlobalSettings().apertiumSource + "identifyLang"
 }

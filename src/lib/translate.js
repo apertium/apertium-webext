@@ -50,7 +50,8 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
     textElements = [...new Set(textElements)];
 
     let transportDocument = createNewDocument(textElements);
-    download(transportDocument, 'transport.html');
+
+    let translatedDocument = await getTranslatedDocument(sourceLanguage, targetLanguage, transportDocument, 'transport.html');
 }
 
 function createNewDocument(nodeList) {
@@ -59,7 +60,7 @@ function createNewDocument(nodeList) {
     nodeList.forEach((node, index) => {
         data += '<' + index + '>';
         data += node.innerHTML;
-        data += '<\\' + index + '>\n\n';
+        data += '<' + index + '>\n\n';
     })
 
     return new Blob([data], {type: 'text/plain'});
@@ -77,6 +78,25 @@ function download(file, filename) {
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
     }, 0);
+}
+
+async function getTranslatedDocument(sourceLanguage, targetLanguage, file, filename) {
+    let langPair = "";
+    langPair = langPair.concat(sourceLanguage, "|", targetLanguage);
+
+    let formData = new FormData();
+    formData.append('langpair', langPair);
+    formData.append('file', file, filename)
+
+    fetch(getTranslateDocEndpoint(), {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.blob())
+        .then((blob) => {
+        console.log(blob);
+        download(blob, filename);
+    })
 }
 
 // everything below courtesy of https://gist.github.com/TinoDidriksen/c41c33ca5809ff297bf7b1608b3a41e2
