@@ -38,6 +38,42 @@ describe('Settings Testing', async function () {
         assert.ok(websiteTable, ' does not Load');
     });
 
+    it('Website Table shows elements', async function (){
+        let websiteTable = await extensionSettings.$('#website-table');
+        let tableElements = await websiteTable.evaluate(table => {
+            return table.children;
+        });
+        assert(tableElements, "Website Table Elements do not exist");
+    });
+
+    it('Website can be added to Table', async function () {
+        let inputBar = await extensionSettings.$('#website-input');
+        let inputButton = await extensionSettings.$('#add-website-button');
+        let websiteTable = await extensionSettings.$('#website-table');
+
+        await inputBar.evaluate(input => input.value = 'example.com');
+        await inputButton.evaluate(button => button.click());
+
+        let websiteName = await websiteTable.evaluate(() => {
+            return document.querySelector("#enabled-website-tbody > tr:nth-child(3) > td:nth-child(2)").textContent;
+        });
+
+        assert.deepStrictEqual(websiteName, 'example.com', 'Cannot add to Website Table')
+    });
+
+    it('Website can be deleted from Table', async function () {
+        let websiteTable = await extensionSettings.$('#website-table');
+        let prevNumberElements = await parseInt(websiteTable.evaluate(table => {
+            return document.querySelector("#enabled-website-tbody > tr:last-child > th").textContent;
+        }));
+
+        let newNumberElements = await parseInt(websiteTable.evaluate(table => {
+            return document.querySelector("#enabled-website-tbody > tr:last-child > th").textContent;
+        }));
+
+        assert.deepStrictEqual(newNumberElements, prevNumberElements - 1, 'Website Elements cannot be deleted')
+    });
+
     after(async function (){
         await browser.close();
     });
