@@ -23,7 +23,7 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
         sourceLanguage = await getWebsiteLanguage();
     }
 
-    await translateWebpage(settings.defaultLanguage, sourceLanguage);
+    await translateWebpage(sourceLanguage, settings.defaultLanguage);
     sendResponse({});
 });
 
@@ -39,6 +39,6 @@ async function addHoverElements(settings) {
 }
 
 function getWebsiteLanguage(){
-    let text = $('body').text().substring(0,400);
+    let text = $('body')[0].innerText.substring(0,400);
     return detectLanguage(text);
 }
