@@ -94,6 +94,8 @@ $("#translate-button").on('click', async function () {
     let targetLanguage = await getTargetLanguage();
     if (!targetLanguage || targetLanguage === 'select') return;
 
+    if(!verifyLangPairs(sourceLanguage, targetLanguage)) return;
+
     getTranslation(translateInput, sourceLanguage, targetLanguage).then(translateOutput => {
         $(".output-text-box").val(translateOutput);
     });

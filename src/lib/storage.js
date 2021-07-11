@@ -26,13 +26,18 @@ function saveGlobalSettings(settings) {
 function getLangPairs() {
     let langPairs = localStorage.getItem("apertium.langPairs");
 
-    if(langPairs === null) {
+    if (langPairs === null) {
         let languageList = fetchLanguageList(getLangPairsEndpoint());
-        console.log(languageList)
-        createLanguagePairs(languageList);
+        return createLanguagePairs(languageList);
     }
 
     return JSON.parse(langPairs);
+}
+
+function verifyLangPairs(sourceLang, targetLang) {
+    let langPairs = getLangPairs().langPairs;
+    let langPairExists = (pair) => pair.sourceLanguage === sourceLang && pair.targetLanguage === targetLang
+    return langPairs.some(langPairExists)
 }
 
 async function fetchLanguageList(listPairURL) {
@@ -41,7 +46,7 @@ async function fetchLanguageList(listPairURL) {
         .then(data => data.responseData);
 }
 
-function createLanguagePairs(languageList){
+function createLanguagePairs(languageList) {
     let current = new Date();
 
     let langPairs = {

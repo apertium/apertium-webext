@@ -52,6 +52,7 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
     let transportDocument = createNewDocument(textElements);
 
     let translatedDocument = await getTranslatedDocument(sourceLanguage, targetLanguage, transportDocument, 'transport.html');
+    console.log(translatedDocument);
 }
 
 function createNewDocument(nodeList) {
@@ -88,15 +89,13 @@ async function getTranslatedDocument(sourceLanguage, targetLanguage, file, filen
     formData.append('langpair', langPair);
     formData.append('file', file, filename)
 
-    fetch(getTranslateDocEndpoint(), {
+    let blob = await fetch(getTranslateDocEndpoint(), {
         method: 'POST',
         body: formData
-    })
-        .then(response => response.blob())
-        .then((blob) => {
-        console.log(blob);
-        download(blob, filename);
-    })
+    }).then(response => response.blob());
+
+    download(blob, filename);
+    return (await blob).text();
 }
 
 // everything below courtesy of https://gist.github.com/TinoDidriksen/c41c33ca5809ff297bf7b1608b3a41e2

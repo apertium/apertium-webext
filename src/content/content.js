@@ -23,8 +23,12 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
         sourceLanguage = await getWebsiteLanguage();
     }
 
-    await translateWebpage(sourceLanguage, settings.defaultLanguage);
-    sendResponse({});
+    if(verifyLangPairs(sourceLanguage, settings.defaultLanguage)) {
+        await translateWebpage(sourceLanguage, settings.defaultLanguage);
+        sendResponse({translated: true});
+    } else {
+        sendResponse({translated: false, problem: 'Invalid Language Pair'});
+    }
 });
 
 async function addHoverElements(settings) {
