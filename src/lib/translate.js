@@ -43,6 +43,7 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
 
     let textElements = [];
 
+    // on passing the entire body it just returns the body again so I'm passing the children individually
     $('body').children().each(function () {
         getBlockNodes($(this)[0], textElements);
     });
@@ -60,7 +61,7 @@ function createNewDocument(nodeList) {
 
     nodeList.forEach((node, index) => {
         data += '<' + index + '>';
-        data += node.innerHTML;
+        data += node;
         data += '<' + index + '>\n\n';
     })
 
@@ -137,7 +138,7 @@ function getBlockNodes(body, uniqueTextNodesList) {
 
         if (blockNodesList[i]) {
             blockNodesList[i].setAttribute('data-replace-id', uniqueTextNodesList.length);
-            uniqueTextNodesList.push(blockNodesList[i]);
+            uniqueTextNodesList.push(blockNodesList[i].innerHTML);
         }
     }
 

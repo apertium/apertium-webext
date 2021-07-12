@@ -34,8 +34,8 @@ function getLangPairs() {
     return JSON.parse(langPairs);
 }
 
-function verifyLangPairs(sourceLang, targetLang) {
-    let langPairs = getLangPairs().langPairs;
+async function verifyLangPairs(sourceLang, targetLang) {
+    let langPairs = await getLangPairs().langPairs;
     let langPairExists = (pair) => pair.sourceLanguage === sourceLang && pair.targetLanguage === targetLang
     return langPairs.some(langPairExists)
 }
@@ -62,11 +62,13 @@ function createLanguagePairs(languageList) {
 
 async function updateLanguagePairs() {
     let time = new Date().toLocaleString();
+    let settings = getGlobalSettings();
     let languageList = await fetchLanguageList(getLangPairsEndpoint());
     let languagePairsJSON = JSON.stringify(createLanguagePairs(languageList));
 
     localStorage.setItem("apertium.langPairs", languagePairsJSON);
-    getGlobalSettings().lastUpdated = time;
+    settings.lastUpdated = time;
+    saveGlobalSettings(settings);
 }
 
 function getLanguageCodeMap(){

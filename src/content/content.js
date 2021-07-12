@@ -20,15 +20,18 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
     }
 
     if(!sourceLanguage) {
-        sourceLanguage = await getWebsiteLanguage();
+        sourceLanguage = 'eng';
+        console.log(sourceLanguage)
     }
 
-    if(verifyLangPairs(sourceLanguage, settings.defaultLanguage)) {
+    if(await verifyLangPairs(sourceLanguage, settings.defaultLanguage)) {
         await translateWebpage(sourceLanguage, settings.defaultLanguage);
         sendResponse({translated: true});
     } else {
         sendResponse({translated: false, problem: 'Invalid Language Pair'});
     }
+
+    return true;
 });
 
 async function addHoverElements(settings) {
@@ -43,6 +46,6 @@ async function addHoverElements(settings) {
 }
 
 function getWebsiteLanguage(){
-    let text = $('body')[0].innerText.substring(0,400);
+    let text = $('body')[0].innerText.substring(0,500);
     return detectLanguage(text);
 }

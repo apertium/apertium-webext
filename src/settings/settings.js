@@ -22,7 +22,7 @@ $(".enabled-language").on('click', function () {
 
 $("#update-button").on('click', async function () {
     await updateLanguagePairs();
-    saveGlobalSettings(globalSettings);
+    setLastUpdated(new Date().toLocaleString());
 });
 
 $("#source-select").on('click', async function () {
@@ -30,17 +30,19 @@ $("#source-select").on('click', async function () {
     switch (selectedSource) {
         case "Apertium Release":
             globalSettings.apertiumSource = "https://apertium.org/apy/";
+            saveGlobalSettings(globalSettings);
             break;
         case "Apertium Beta":
             globalSettings.apertiumSource = "https://beta.apertium.org/apy/";
+            saveGlobalSettings(globalSettings);
             break;
         case "Local/Custom Source":
             alert("Option not available yet");
             break;
     }
     await updateLanguagePairs();
+    setLastUpdated(new Date().toLocaleString());
     createDropdown($("#target-language-dropdown"));
-    saveGlobalSettings(globalSettings);
 });
 
 // Delete a website from hover-enabled table
