@@ -38,6 +38,8 @@ async function translateWord(inputText, sourceLanguage, targetLanguage) {
     return outputText;
 }
 
+let separator = "$$$$$$$";
+
 async function translateWebpage(sourceLanguage, targetLanguage) {
     console.log('inside translatepage');
 
@@ -53,17 +55,17 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
     let transportDocument = createNewDocument(textElements);
 
     let translatedDocument = await getTranslatedDocument(sourceLanguage, targetLanguage, transportDocument, 'transport.html');
-    console.log(translatedDocument);
+    let translatedElements = translatedDocument.split(separator);
+    console.table(translatedElements);
 }
 
 function createNewDocument(nodeList) {
     let data = "";
 
     nodeList.forEach((node, index) => {
-        data += '<' + index + '>';
         data += node;
-        data += '<' + index + '>\n\n';
-    })
+        data += separator;
+    });
 
     return new Blob([data], {type: 'text/plain'});
 }
