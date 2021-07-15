@@ -23,7 +23,6 @@ $(".enabled-language").on('click', function () {
 
 // Deletes a website from the hover list
 $(".delete-website").on('click', function () {
-    console.log('hi')
     let hostname = $(this).attr("data-url");
 
     removeFromEnabledWebsiteList(globalSettings, hostname);

@@ -21,7 +21,6 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
 
     if(!sourceLanguage) {
         sourceLanguage = 'eng';
-        console.log(sourceLanguage)
     }
 
     if(await verifyLangPairs(sourceLanguage, settings.defaultLanguage)) {

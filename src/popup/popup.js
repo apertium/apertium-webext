@@ -54,8 +54,6 @@ $("#exchange-source-target").on('click', async function () {
     let sourceLanguage = await getSourceLanguage(true);
     let targetLanguage = await getTargetLanguage();
 
-    console.log(sourceLanguage+targetLanguage);
-
     if (sourceLanguage === 'detect') {
         setSourceLanguage(targetLanguage);
         setTargetLanguage('select');

@@ -41,8 +41,6 @@ async function translateWord(inputText, sourceLanguage, targetLanguage) {
 let separator = "$$$$$$$";
 
 async function translateWebpage(sourceLanguage, targetLanguage) {
-    console.log('inside translatepage');
-
     let textElements = [];
 
     // on passing the entire body it just returns the body again so I'm passing the children individually
@@ -57,6 +55,16 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
     let translatedDocument = await getTranslatedDocument(sourceLanguage, targetLanguage, transportDocument, 'transport.html');
     let translatedElements = translatedDocument.split(separator);
     console.table(translatedElements);
+
+    replaceText(translatedElements);
+}
+
+function replaceText(translatedElements) {
+    $('[data-replace-id]').each(function () {
+        console.group($(this));
+        let id = $(this).attr('data-replace-id');
+        $(this).html(translatedElements[id]);
+    })
 }
 
 function createNewDocument(nodeList) {

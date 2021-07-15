@@ -28,7 +28,11 @@ function getLangPairs() {
 
     if (langPairs === null) {
         let languageList = fetchLanguageList(getLangPairsEndpoint());
-        return createLanguagePairs(languageList);
+        return {
+            last_updated: new Date().toLocaleString(),
+            source: getGlobalSettings().apertiumSource,
+            langPairs: languageList
+        };
     }
 
     return JSON.parse(langPairs);
@@ -233,7 +237,7 @@ async function detectLanguage(text){
         .then(response => response.json());
 
     let max = -Infinity, x, languageCode;
-    for( x in possibleLanguageList) {
+    for(x in possibleLanguageList) {
         if( possibleLanguageList[x] > max) {
             max = possibleLanguageList[x];
             languageCode = x;
@@ -285,8 +289,6 @@ function removeFromEnabledWebsiteList(settings, hostname){
             list.splice(index, 1);
         }
     }
-
-    console.log(list);
 
     saveEnabledWebsiteList(settings, list);
 }
