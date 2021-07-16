@@ -38,8 +38,6 @@ async function translateWord(inputText, sourceLanguage, targetLanguage) {
     return outputText;
 }
 
-let separator = "$$$$$$$";
-
 async function translateWebpage(sourceLanguage, targetLanguage) {
     let textElements = [];
 
@@ -53,7 +51,8 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
     let transportDocument = createNewDocument(textElements);
 
     let translatedDocument = await getTranslatedDocument(sourceLanguage, targetLanguage, transportDocument, 'transport.html');
-    let translatedElements = translatedDocument.split(separator);
+    let translatedElements = splitText(translatedDocument);
+
     console.table(translatedElements);
 
     replaceText(translatedElements);
@@ -61,19 +60,35 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
 
 function replaceText(translatedElements) {
     $('[data-replace-id]').each(function () {
-        console.group($(this));
         let id = $(this).attr('data-replace-id');
         $(this).html(translatedElements[id]);
     })
 }
 
+function splitText(translatedDocument) {
+    let list = [];
+
+    let d = new DOMParser();
+    let document = d.parseFromString(translatedDocument, 'text/html');
+    let nodeList = document.querySelectorAll('[data-id]');
+
+    nodeList.forEach((element) => {
+        list.push(element.innerHTML);
+    })
+
+    return list;
+}
+
 function createNewDocument(nodeList) {
-    let data = "";
+    let data = "<body>";
 
     nodeList.forEach((node, index) => {
+        data += "<div data-id=" + index + ">"
         data += node;
-        data += separator;
+        data += "</div>";
     });
+
+    data += "</body>";
 
     return new Blob([data], {type: 'text/plain'});
 }
@@ -105,7 +120,7 @@ async function getTranslatedDocument(sourceLanguage, targetLanguage, file, filen
         body: formData
     }).then(response => response.blob());
 
-    download(blob, filename);
+    // download(blob, filename);
     return (await blob).text();
 }
 
