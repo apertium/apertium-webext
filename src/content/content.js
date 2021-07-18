@@ -9,9 +9,9 @@ jQuery.fn.ownText = function () {
     }).text();
 };
 
-browser.runtime.sendMessage({method: "getSettings"}, function (response) {
+browser.runtime.sendMessage({method: "getSettings"}, async function (response) {
     settings = response.settings;
-    addHoverElements(settings);
+    await addHoverElements(settings);
 });
 
 browser.runtime.onMessage.addListener(async function(request, sender, sendResponse) {

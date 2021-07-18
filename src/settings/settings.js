@@ -1,15 +1,9 @@
 let globalSettings;
 init();
 
-$("#default-target-language-button").on('click', function (e) {
-    e.stopPropagation();
-
-    let dropdown = $("#target-language-dropdown")[0];
-    if (dropdown.style.display === "none") {
-        dropdown.style.display = "block";
-    } else {
-        dropdown.style.display = "none";
-    }
+$("#update-button").on('click', async function () {
+    await updateLanguagePairs();
+    setLastUpdated(new Date().toLocaleString());
 });
 
 $(".enabled-language").on('click', function () {
@@ -20,9 +14,15 @@ $(".enabled-language").on('click', function () {
     saveGlobalSettings(globalSettings);
 });
 
-$("#update-button").on('click', async function () {
-    await updateLanguagePairs();
-    setLastUpdated(new Date().toLocaleString());
+$("#default-target-language-button").on('click', function (e) {
+    e.stopPropagation();
+
+    let dropdown = $("#target-language-dropdown")[0];
+    if (dropdown.style.display === "none") {
+        dropdown.style.display = "block";
+    } else {
+        dropdown.style.display = "none";
+    }
 });
 
 $("#source-select").on('click', async function () {

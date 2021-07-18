@@ -238,7 +238,7 @@ async function detectLanguage(text){
 
     let max = -Infinity, x, languageCode;
     for(x in possibleLanguageList) {
-        if( possibleLanguageList[x] > max) {
+        if(possibleLanguageList.hasOwnProperty(x) && possibleLanguageList[x] > max) {
             max = possibleLanguageList[x];
             languageCode = x;
         }
