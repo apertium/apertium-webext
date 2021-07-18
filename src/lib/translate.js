@@ -39,6 +39,16 @@ async function translateWord(inputText, sourceLanguage, targetLanguage) {
 }
 
 async function translateWebpage(sourceLanguage, targetLanguage) {
+    let textElements = getTextElements();
+
+    let transportDocument = createNewDocument(textElements);
+    let translatedDocument = await getTranslatedDocument(sourceLanguage, targetLanguage, transportDocument, 'transport.html');
+
+    let translatedElements = splitText(translatedDocument);
+    replaceText(translatedElements);
+}
+
+function getTextElements() {
     let textElements = [];
 
     // on passing the entire body it just returns the body again so I'm passing the children individually
@@ -46,16 +56,7 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
         getBlockNodes($(this)[0], textElements);
     });
 
-    textElements = [...new Set(textElements)];
-
-    let transportDocument = createNewDocument(textElements);
-
-    let translatedDocument = await getTranslatedDocument(sourceLanguage, targetLanguage, transportDocument, 'transport.html');
-    let translatedElements = splitText(translatedDocument);
-
-    console.table(translatedElements);
-
-    replaceText(translatedElements);
+    return [...new Set(textElements)];
 }
 
 function replaceText(translatedElements) {

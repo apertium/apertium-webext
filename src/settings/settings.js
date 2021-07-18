@@ -53,7 +53,7 @@ $(".delete-website").on('click', function () {
     updateEnabledTable($("#enabled-website-tbody"));
 });
 
-// Add website from table
+// Add website to table
 $("#add-website-button").on('click', function () {
     let url = $('#website-input').val();
 

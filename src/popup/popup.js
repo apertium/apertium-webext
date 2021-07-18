@@ -99,7 +99,7 @@ $("#translate-button").on('click', async function () {
     });
 });
 
-// TODO: Translate the entire current webpage
+// Translate the entire current webpage
 $("#translate-webpage-button").on('click', function () {
     window.browser = (function () {
         return window.browser || window.chrome;
