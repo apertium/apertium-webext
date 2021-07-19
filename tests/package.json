@@ -1,0 +1,22 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "tests for apertium-webext",
+  "main": "none",
+  "dependencies": {
+    "puppeteer": "^10.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^9.0.1"
+  },
+  "scripts": {
+    "test": "mocha popup.test.js options.test.js settings.test.js"
+  },
+  "keywords": [
+    "web-extensions",
+    "apertium",
+    "apertium-tools"
+  ],
+  "author": "OverPowered",
+  "license": "ISC"
+}

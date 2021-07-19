@@ -23,22 +23,63 @@ describe('Settings Testing', async function () {
         await extensionSettings.goto(`chrome-extension://${extensionID}/${extensionEndURL}`);
 
         let targetButton = await extensionSettings.$('#default-target-language-button');
-        assert.ok(targetButton, ' does not Load');
+        assert.ok(targetButton, 'Target Button does not Load');
 
         let targetDropdown = await extensionSettings.$('#target-language-dropdown');
-        assert.ok(targetDropdown, ' does not Load');
+        assert.ok(targetDropdown, 'Target Dropdown does not Load');
 
         let sourceSelectDropdown = await extensionSettings.$('#source-select');
-        assert.ok(sourceSelectDropdown, ' does not Load');
+        assert.ok(sourceSelectDropdown, 'Apertium Source Select Dropdown does not Load');
 
         let lastUpdated = await extensionSettings.$('#last-updated');
-        assert.ok(lastUpdated, ' does not Load');
+        assert.ok(lastUpdated, 'Last Updated field does not Load');
 
         let websiteTable = await extensionSettings.$('#website-table');
-        assert.ok(websiteTable, ' does not Load');
+        assert.ok(websiteTable, 'Enabled Website Table does not Load');
     });
 
-    it('Website Table shows elements', async function (){
+    it('Language Dropdown can be selected', async function () {
+        let dropdownButton = await extensionSettings.$('#default-target-language-button');
+        let dropdown = await extensionSettings.$('#target-language-dropdown');
+        let selectedLanguage = await extensionSettings.$('#target-language');
+
+        await dropdownButton.evaluate(btn => btn.click());
+        let languageList = await dropdown.evaluate(() => {
+            document.querySelector('option[value="cat"]').click();
+            return document.querySelectorAll('option.enabled-language');
+        });
+        let language = await selectedLanguage.evaluate((btn) => {return btn.innerText});
+
+        assert.ok(Object.keys(languageList).length > 1, "Language Dropdown cannot be populated");
+        assert.deepStrictEqual(language, 'Catalan', "Language cannot be selected");
+    });
+
+    it('Update button works', async function () {
+        let lastUpdated = await extensionSettings.$('#last-updated');
+        let updateButton = await extensionSettings.$('#update-button');
+        let dropdown = await extensionSettings.$('#target-language-dropdown');
+
+        let prevTime = await lastUpdated.evaluate((span) => {return span.innerText});
+        await updateButton.evaluate(button => button.click());
+        await extensionSettings.waitForTimeout(timeout);
+
+        let currTime = await lastUpdated.evaluate((span) => {return span.innerText});
+        let languageList = await dropdown.evaluate(() => {
+            return document.querySelectorAll('option.enabled-language');
+        });
+
+        assert.ok(Object.keys(languageList).length > 1, "Language Dropdown cannot be populated");
+        assert.notDeepStrictEqual(currTime, prevTime, "Language List does not Update")
+    });
+
+    it('Source Select works', async function () {
+        let sourceSelectDropdown = await extensionSettings.$('#source-select');
+        let dropdown = await extensionSettings.$('#target-language-dropdown');
+        let lastUpdated = await extensionSettings.$('#last-updated');
+
+    });
+
+    it('Website Table shows elements', async function () {
         let websiteTable = await extensionSettings.$('#website-table');
         let tableElements = await websiteTable.evaluate(table => {
             return table.children;

@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const assert = require('assert');
 const path = require('path');
 
-const timeout = 1500;
+const timeout = 1000;
 const extensionPath = path.join(__dirname, '..','src/');
 const extensionName = 'Apertium';
 const extensionEndURL = 'popup/popup.html';
@@ -58,14 +58,16 @@ describe('Pop-Up Testing', async function () {
         let sourceDropdownElements = await sourceDropdown.evaluate(dropdown => {
             return dropdown.children;
         });
-        assert(sourceDropdownElements, "Source Dropdown Elements do not exist");
+
+        assert.ok(sourceDropdownElements, "Source Dropdown Elements do not exist");
 
 
         await targetDropdownButton.evaluate(form => form.click());
         let targetDropdownElements = await targetDropdown.evaluate(dropdown => {
             return dropdown.children;
         });
-        assert(targetDropdownElements, "Target Dropdown Elements do not exist");
+
+        assert.ok(targetDropdownElements, "Target Dropdown Elements do not exist");
     });
 
     it('In-Popup Translation Works', async function (){
@@ -78,7 +80,7 @@ describe('Pop-Up Testing', async function () {
         let translateButton = await extensionPopup.$('#translate-button');
         let switchButton = await extensionPopup.$('#exchange-source-target');
 
-        await sourceDropdownButton.evaluate(form => form.click());
+        await sourceDropdownButton.evaluate(btn => btn.click());
         await sourceDropdown.evaluate(() => {
             document.querySelector('option[value="cat"]').click();
         });
