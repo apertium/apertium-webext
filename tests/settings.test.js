@@ -43,6 +43,7 @@ describe('Settings Testing', async function () {
         let dropdown = await extensionSettings.$('#target-language-dropdown');
         let selectedLanguage = await extensionSettings.$('#target-language');
 
+        await  extensionSettings.waitForTimeout(timeout);
         await dropdownButton.evaluate(btn => btn.click());
         let languageList = await dropdown.evaluate(() => {
             document.querySelector('option[value="cat"]').click();
@@ -77,6 +78,27 @@ describe('Settings Testing', async function () {
         let dropdown = await extensionSettings.$('#target-language-dropdown');
         let lastUpdated = await extensionSettings.$('#last-updated');
 
+        let prevTime = await lastUpdated.evaluate((span) => {return span.innerText});
+        let prevSource = await sourceSelectDropdown.$eval('#source-select option:selected', (option) => {return option.innerText});
+        let numLanguages = await dropdown.evaluate(() => {
+            return document.querySelectorAll('option.enabled-language').length;
+        });
+
+        await sourceSelectDropdown.evaluate(dropdown => {
+            dropdown.click();
+            document.querySelector('option[value="beta"]').click();
+        });
+
+        extensionSettings.waitForTimeout(timeout);
+        let currTime = await lastUpdated.evaluate((span) => {return span.innerText});
+        let currSource = sourceSelectDropdown.$eval('option:selected', (option) => {return option.innerText});
+        let newNumLanguages = await dropdown.evaluate(() => {
+            return document.querySelectorAll('option.enabled-language').length;
+        });
+
+        assert.notDeepStrictEqual(prevTime, currTime, 'last Updated value does not update');
+        assert.notDeepStrictEqual(prevSource, currSource, 'Source does not update');
+        assert.notDeepStrictEqual(numLanguages, newNumLanguages, 'Language List does not update');
     });
 
     it('Website Table shows elements', async function () {
