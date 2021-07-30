@@ -46,8 +46,14 @@
     <select id="source-select" class="source-select form-select no-focus" aria-label="Default select example">
       <option value="release">Apertium Release</option>
       <option value="beta">Apertium Beta</option>
-      <option value="custom">Local/Custom Source</option>
+      <option value="custom">Custom Source</option>
     </select>
+  </div>
+  <div id="apy-input-wrapper">
+    <div id="add-custom-apy-div" class="input-group mb-3" style="display: none">
+      <input id="apy-input" type="text" class="form-control no-focus" placeholder="http://localhost:2737/">
+      <button id="add-apy-url" class="btn btn-sm btn-dark no-focus" type="button">Set Source</button>
+    </div>
   </div>
   <div class="website-table">
     <div class="table-wrapper-scroll-y website-table-scrollbar">
@@ -65,7 +71,7 @@
     </div>
     <div class="input-group mb-3">
       <input id="website-input" type="text" class="form-control no-focus" placeholder="example.com">
-      <button id="add-website-button" class="btn btn-sm btn-dark" type="button">Add Website</button>
+      <button id="add-website-button" class="btn btn-sm btn-dark no-focus" type="button">Add Website</button>
     </div>
   </div>
 </div>

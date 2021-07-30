@@ -25,7 +25,8 @@ $("#default-target-language-button").on('click', function (e) {
     }
 });
 
-$("#source-select").on('click', async function () {
+$("#source-select").on('click', async function (e) {
+    let customApyInput = $("#add-custom-apy-div")[0];
     let selectedSource = $("#source-select option:selected").text();
     switch (selectedSource) {
         case "Apertium Release":
@@ -36,13 +37,20 @@ $("#source-select").on('click', async function () {
             globalSettings.apertiumSource = "https://beta.apertium.org/apy/";
             saveGlobalSettings(globalSettings);
             break;
-        case "Local/Custom Source":
-            alert("Option not available yet");
+        case "Custom Source":
+            e.stopPropagation();
+            if (customApyInput.style.display === "none") {
+                customApyInput.style.display = "flex";
+            }
             break;
     }
     await updateLanguagePairs();
     setLastUpdated(new Date().toLocaleString());
     createDropdown($("#target-language-dropdown"));
+});
+
+$('#add-custom-apy-div').on('click', function (e) {
+    e.stopPropagation();
 });
 
 // Delete a website from hover-enabled table
@@ -63,6 +71,7 @@ $("#add-website-button").on('click', function () {
 
 $(document).click(function(){
     $("#target-language-dropdown").hide();
+    $('#add-custom-apy-div').hide();
 });
 
 function init() {

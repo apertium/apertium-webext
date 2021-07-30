@@ -17,8 +17,8 @@ tr, td, th {
     justify-content: space-between;
 
     width: auto;
-    height: 8em;
-    padding: 0.5em 1em 1em 1em;
+    height: 8rem;
+    padding: 0.5rem 1rem 1rem 1rem;
 
     background-color: #333333;
 }
@@ -33,8 +33,8 @@ tr, td, th {
 }
 
 .main-container {
-    padding: 1em;
-    height: calc(100vh - 8em);
+    padding: 1rem;
+    height: calc(100vh - 8rem);
 }
 
 .single-line-setting {
@@ -43,39 +43,49 @@ tr, td, th {
     justify-content: space-between;
     align-content: center;
 
-    margin-top: 1em;
-    margin-bottom: 1.5em;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .single-line-setting span {
-    padding-left: 0.35em;
-    padding-top: 0.3em;
+    padding-left: 0.35rem;
+    padding-top: 0.3rem;
 }
 
 .single-line-setting .btn-group {
-    width: 10em;
+    width: 10rem;
 }
 
 #default-target-language-button {
-    width: 2em;
+    width: 2rem;
 }
 
 #update-button {
-    width: 10em;
+    width: 10rem;
+}
+
+#apy-input-wrapper {
+    width: 100%;
+    overflow: auto;
+    margin-bottom: 1.5rem;
+}
+
+#add-custom-apy-div {
+    width: 20rem;
+    float: right;
 }
 
 .source-select {
-    width: 12em !important;
+    width: 12rem !important;
 }
 
 .website-table-scrollbar {
     position: relative;
     overflow: auto;
 
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
 
     -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 .website-table-scrollbar::-webkit-scrollbar {
@@ -108,9 +118,9 @@ tr, td, th {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    max-height: 30em;
-    width: 10em;
-    box-shadow: 0 0.2em 0.4em 0 rgba(0,0,0,0.2);
+    max-height: 30rem;
+    width: 10rem;
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.2);
     z-index: 50;
     overflow-y: auto;
 }
@@ -118,7 +128,7 @@ tr, td, th {
 .enabled-language {
     font-size: smaller;
     color: black;
-    padding: 0.3em 0.4em;
+    padding: 0.3rem 0.4rem;
 
     cursor: pointer;
     display: block;
@@ -127,7 +137,7 @@ tr, td, th {
 .disabled-language {
     font-size: smaller;
     color: gray;
-    padding: 0.3em 0.4em;
+    padding: 0.3rem 0.4rem;
     text-decoration: none;
     display: block;
     cursor: pointer;
