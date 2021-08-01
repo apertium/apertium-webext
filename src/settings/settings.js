@@ -49,6 +49,16 @@ $("#source-select").on('click', async function (e) {
     createDropdown($("#target-language-dropdown"));
 });
 
+$('#add-apy-url').on('click', async function () {
+    let customApyInput = $('#apy-input');
+    globalSettings.apertiumSource = customApyInput.val();
+
+    saveGlobalSettings(globalSettings);
+    await updateLanguagePairs();
+    setLastUpdated(new Date().toLocaleString());
+    createDropdown($("#target-language-dropdown"));
+});
+
 $('#add-custom-apy-div').on('click', function (e) {
     e.stopPropagation();
 });
@@ -97,6 +107,8 @@ function setDefaultLanguage(defaultLanguage) {
 
 function setApertiumSource(apertiumSource) {
     let sourceSelect = $("#source-select");
+    let customApyInput = $('#apy-input');
+    customApyInput.attr("placeholder", "http://localhost:2737/");
     switch (apertiumSource) {
         case "https://apertium.org/apy/":
             sourceSelect.val("release").change();
@@ -104,8 +116,9 @@ function setApertiumSource(apertiumSource) {
         case "https://beta.apertium.org/apy/":
             sourceSelect.val("beta").change();
             break;
-        case "Local/Custom Source":
+        default:
             sourceSelect.val("custom").change();
+            customApyInput.attr("placeholder", apertiumSource);
             break;
     }
 }

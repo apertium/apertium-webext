@@ -359,3 +359,10 @@ function isHostname(url) {
 
     return r.test(url);
 }
+
+function isURL(url) {
+    let validURLRegex = "^(http(s)?:\\/\\/)?(www\\.)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$";
+    let r = RegExp(validURLRegex);
+
+    return r.test(url);
+}
