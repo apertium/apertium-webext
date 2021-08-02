@@ -4,10 +4,10 @@ function addHoverTag(targetLanguage, sourceLanguage) {
     // - ([A-z0-9']+) apart from elements, we consider all words, numbers or words containing "'"
 
     $('p').each(function () {
-        $(this).html($(this).html().replace(/(?![^<]*?>)([A-z0-9']+)/g, '<hover data-original="$1" data-translation="$1">$1</hover>'));
+        $(this).html($(this).html().replace(/(?![^<]*?>)([A-z0-9']+)/g, '<span data-original="$1" data-translation="$1">$1</span>'));
     });
 
-    $("hover").hover(async function () {
+    $("span").hover(async function () {
         let self = $(this)
         let preTranslation = self.attr('data-translation'); // basically just the data before translating it (possibly again)
         let original = self.attr('data-original');
@@ -24,9 +24,10 @@ function addHoverTag(targetLanguage, sourceLanguage) {
             //     console.log(contextTranslation.innerText, parent.text())
             // }
 
-            for (let element of parent.children()) {
+            for (let element of parent.children('[data-original]')) {
                 let original = element.getAttribute('data-original');
                 let translation = contextTranslation.querySelector('[data-original="' + original + '"]');
+                console.log(translation);
                 translation.remove();
 
                 element.setAttribute('data-translation', translation.textContent);
