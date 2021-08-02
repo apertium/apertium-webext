@@ -4,21 +4,36 @@ function addHoverTag(targetLanguage, sourceLanguage) {
     // - ([A-z0-9']+) apart from elements, we consider all words, numbers or words containing "'"
 
     $('p').each(function () {
-        $(this).html($(this).html().replace(/(?![^<]*?>)([A-z0-9']+)/g , '<hover data-translation="$1" data-translation-position="top">$1</hover>'));
+        $(this).html($(this).html().replace(/(?![^<]*?>)([A-z0-9']+)/g, '<hover data-original="$1" data-translation="$1">$1</hover>'));
     });
 
-    let setTimeoutConst;
-    $("hover").hover(function() {
+    $("hover").hover(async function () {
         let self = $(this)
-        setTimeoutConst = setTimeout(async function () {
-            let text = self.attr('data-translation');
-            if(self.text() === text) {
-                let translation = await translateWord(text, sourceLanguage, targetLanguage);
-                self.attr('data-translation', translation);
+        let preTranslation = self.attr('data-translation'); // basically just the data before translating it (possibly again)
+        let original = self.attr('data-original');
+
+        if (original === preTranslation) {
+            let parent = self.parent();
+            let contextTranslation = await translateWord(parent.html(), sourceLanguage, targetLanguage).then((string) => {
+                let parser = new DOMParser();
+                return parser.parseFromString(string, 'text/html').body
+            });
+
+            // if (contextTranslation.children.length !== parent.children().length) {
+            //     console.log(contextTranslation.children, parent.children())
+            //     console.log(contextTranslation.innerText, parent.text())
+            // }
+
+            for (let element of parent.children()) {
+                let original = element.getAttribute('data-original');
+                let translation = contextTranslation.querySelector('[data-original="' + original + '"]');
+                translation.remove();
+
+                element.setAttribute('data-translation', translation.textContent);
             }
-        }, 1000);
-    }, function() {
-        clearTimeout(setTimeoutConst);
+
+            // self.attr('data-translation', translation);
+        }
     });
 }
 
@@ -39,6 +54,52 @@ async function translateWord(inputText, sourceLanguage, targetLanguage) {
 }
 
 async function translateWebpage(sourceLanguage, targetLanguage) {
+    function getTextElements() {
+        let textElements = [];
+
+        // on passing the entire body it just returns the body again so I'm passing the children individually
+        $('body').children().each(function () {
+            getBlockNodes($(this)[0], textElements);
+        });
+
+        return [...new Set(textElements)];
+    }
+
+    function replaceText(translatedElements) {
+        $('[data-replace-id]').each(function () {
+            let id = $(this).attr('data-replace-id');
+            $(this).html(translatedElements[id]);
+        })
+    }
+
+    function splitText(translatedDocument) {
+        let list = [];
+
+        let d = new DOMParser();
+        let document = d.parseFromString(translatedDocument, 'text/html');
+        let nodeList = document.querySelectorAll('[data-id]');
+
+        nodeList.forEach((element) => {
+            list.push(element.innerHTML);
+        })
+
+        return list;
+    }
+
+    function createNewDocument(nodeList) {
+        let data = "<body>";
+
+        nodeList.forEach((node, index) => {
+            data += "<div data-id=" + index + ">"
+            data += node;
+            data += "</div>";
+        });
+
+        data += "</body>";
+
+        return new Blob([data], {type: 'text/plain'});
+    }
+
     let textElements = getTextElements();
 
     let transportDocument = createNewDocument(textElements);
@@ -46,52 +107,6 @@ async function translateWebpage(sourceLanguage, targetLanguage) {
 
     let translatedElements = splitText(translatedDocument);
     replaceText(translatedElements);
-}
-
-function getTextElements() {
-    let textElements = [];
-
-    // on passing the entire body it just returns the body again so I'm passing the children individually
-    $('body').children().each(function () {
-        getBlockNodes($(this)[0], textElements);
-    });
-
-    return [...new Set(textElements)];
-}
-
-function replaceText(translatedElements) {
-    $('[data-replace-id]').each(function () {
-        let id = $(this).attr('data-replace-id');
-        $(this).html(translatedElements[id]);
-    })
-}
-
-function splitText(translatedDocument) {
-    let list = [];
-
-    let d = new DOMParser();
-    let document = d.parseFromString(translatedDocument, 'text/html');
-    let nodeList = document.querySelectorAll('[data-id]');
-
-    nodeList.forEach((element) => {
-        list.push(element.innerHTML);
-    })
-
-    return list;
-}
-
-function createNewDocument(nodeList) {
-    let data = "<body>";
-
-    nodeList.forEach((node, index) => {
-        data += "<div data-id=" + index + ">"
-        data += node;
-        data += "</div>";
-    });
-
-    data += "</body>";
-
-    return new Blob([data], {type: 'text/plain'});
 }
 
 // purely for test purposes

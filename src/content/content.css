@@ -1,10 +1,12 @@
-[data-translation] {
+/* With major help from https://stackoverflow.com/a/25836471/14131011 for tooltip styling */
+
+[data-translation]:not([data-translation=""]) {
     display: inline-block;
     position: relative;
 }
 
 /* Tooltip styling */
-[data-translation]:before {
+[data-translation]:not([data-translation=""]):before {
     content: attr(data-translation);
     display: none;
     position: absolute;
@@ -14,13 +16,13 @@
     font-size: 14px;
     line-height: 1.4;
     min-width: 5em;
+    max-width: 10em;
     text-align: center;
     border-radius: 4px;
 }
 
 /* Dynamic horizontal centering */
-[data-translation-position="top"]:before,
-[data-translation-position="bottom"]:before {
+[data-translation]:not([data-translation=""]):before {
     left: 50%;
     -ms-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
@@ -28,38 +30,13 @@
     transform: translateX(-50%);
 }
 
-/* Dynamic vertical centering */
-[data-translation-position="right"]:before,
-[data-translation-position="left"]:before {
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-[data-translation-position="top"]:before {
+[data-translation]:not([data-translation=""]):before {
     bottom: 100%;
     margin-bottom: 6px;
 }
 
-[data-translation-position="right"]:before {
-    left: 100%;
-    margin-left: 6px;
-}
-
-[data-translation-position="bottom"]:before {
-    top: 100%;
-    margin-top: 6px;
-}
-
-[data-translation-position="left"]:before {
-    right: 100%;
-    margin-right: 6px;
-}
-
 /* Tooltip arrow styling/placement */
-[data-translation]:after {
+[data-translation]:not([data-translation=""]):after {
     content: '';
     display: none;
     position: absolute;
@@ -70,52 +47,23 @@
 }
 
 /* Dynamic horizontal centering for the tooltip */
-[data-translation-position="top"]:after,
-[data-translation-position="bottom"]:after {
+[data-translation]:not([data-translation=""]):after{
     left: 50%;
     margin-left: -6px;
-}
-
-/* Dynamic vertical centering for the tooltip */
-[data-translation-position="right"]:after,
-[data-translation-position="left"]:after {
-    top: 50%;
-    margin-top: -6px;
-}
-
-[data-translation-position="top"]:after {
     bottom: 100%;
     border-width: 6px 6px 0;
     border-top-color: #000;
 }
 
-[data-translation-position="right"]:after {
-    left: 100%;
-    border-width: 6px 6px 6px 0;
-    border-right-color: #000;
-}
-
-[data-translation-position="bottom"]:after {
-    top: 100%;
-    border-width: 0 6px 6px;
-    border-bottom-color: #000;
-}
-
-[data-translation-position="left"]:after {
-    right: 100%;
-    border-width: 6px 0 6px 6px;
-    border-left-color: #000;
-}
-
 /* Show the tooltip when hovering */
-[data-translation]:hover:before,
-[data-translation]:hover:after {
+[data-translation]:not([data-translation=""]):hover:before,
+[data-translation]:not([data-translation=""]):hover:after {
     display: block;
     z-index: 50;
 }
 
-[data-translation]:hover{
-    animation-delay: 100ms;
-    -moz-animation-delay: 100ms;
-    -webkit-animation-delay: 100ms;
+[data-translation]:not([data-translation=""]):hover{
+    animation-delay: 500ms;
+    -moz-animation-delay: 500ms;
+    -webkit-animation-delay: 500ms;
 }
