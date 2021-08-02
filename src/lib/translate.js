@@ -19,21 +19,13 @@ function addHoverTag(targetLanguage, sourceLanguage) {
                 return parser.parseFromString(string, 'text/html').body
             });
 
-            // if (contextTranslation.children.length !== parent.children().length) {
-            //     console.log(contextTranslation.children, parent.children())
-            //     console.log(contextTranslation.innerText, parent.text())
-            // }
-
             for (let element of parent.children('[data-original]')) {
                 let original = element.getAttribute('data-original');
                 let translation = contextTranslation.querySelector('[data-original="' + original + '"]');
-                console.log(translation);
                 translation.remove();
 
                 element.setAttribute('data-translation', translation.textContent);
             }
-
-            // self.attr('data-translation', translation);
         }
     });
 }
