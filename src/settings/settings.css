@@ -67,7 +67,6 @@ tr, td, th {
 #apy-input-wrapper {
     width: 100%;
     overflow: auto;
-    margin-bottom: 1.5rem;
 }
 
 #add-custom-apy-div {
@@ -75,8 +74,18 @@ tr, td, th {
     float: right;
 }
 
+.error-text {
+    float: right;
+    font-size: xx-small;
+    color: red;
+}
+
 .source-select {
     width: 12rem !important;
+}
+
+.website-table {
+    margin-top: 1.5rem;
 }
 
 .website-table-scrollbar {

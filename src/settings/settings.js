@@ -50,13 +50,23 @@ $("#source-select").on('click', async function (e) {
 });
 
 $('#add-apy-url').on('click', async function () {
+    let valid = true;
     let customApyInput = $('#apy-input');
-    globalSettings.apertiumSource = customApyInput.val();
 
-    saveGlobalSettings(globalSettings);
-    await updateLanguagePairs();
-    setLastUpdated(new Date().toLocaleString());
-    createDropdown($("#target-language-dropdown"));
+    try {
+        await updateLanguagePairs();
+    } catch (e) {
+        let errorMessage = '<span class="error-text">Invalid URL, please try again</span>';
+        $('#apy-input-wrapper').after(errorMessage);
+        valid = false;
+    }
+
+    if(valid){
+        setLastUpdated(new Date().toLocaleString());
+        createDropdown($("#target-language-dropdown"));
+        globalSettings.apertiumSource = customApyInput.val();
+        saveGlobalSettings(globalSettings);
+    }
 });
 
 $('#add-custom-apy-div').on('click', function (e) {
